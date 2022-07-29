@@ -13,23 +13,13 @@ const TodoTypeItem = ({
   selectedType,
   setSelectedType,
 }: TodoTypeItemProps) => {
-  function renderBackgroundColor() {
-    if (title === selectedType && title === "All") {
-      return "amber.400";
-    } else if (title === selectedType) {
-      return "blue.500";
-    }
-
-    return "gray.200";
-  }
-
   return (
     <Pressable
       padding="2"
       width="24"
       height="24"
       borderRadius="md"
-      bgColor={renderBackgroundColor()}
+      bgColor={title === selectedType ? "blue.500" : "gray.200"}
       display="flex"
       justifyContent="center"
       alignItems="center"

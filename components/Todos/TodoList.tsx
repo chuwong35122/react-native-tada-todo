@@ -8,7 +8,7 @@ const TodoList = () => {
     {
       todo: "1",
       date: new Date(),
-      status: false,
+      status: true,
       type: "Personal",
     },
     {
@@ -31,9 +31,7 @@ const TodoList = () => {
       </Text>
       <FlatList
         data={data}
-        renderItem={({ item }) => (
-          <TodoItem todo={item.todo} date={item.date} />
-        )}
+        renderItem={({ item, index }) => <TodoItem data={item} index={index} />}
       />
     </View>
   );

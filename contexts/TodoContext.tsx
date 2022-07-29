@@ -6,10 +6,11 @@ import React, {
   useEffect,
 } from "react";
 import { TodoTypes, TodoTypeTitle } from "../interfaces/todo.interface";
+import { AppTodoTypes } from "./../components/constants/todoTypes";
 
 interface TodoContextProps {
   todoTypes: TodoTypes[];
-  selectedType: string;
+  selectedType: TodoTypeTitle;
   setSelectedType: Dispatch<SetStateAction<TodoTypeTitle>>;
 }
 
@@ -25,21 +26,7 @@ const TodoContextProvider = ({ ...props }) => {
   };
 
   useEffect(() => {
-    setTodoTypes([
-      { title: "All" },
-      {
-        title: "Personal",
-      },
-      {
-        title: "School",
-      },
-      {
-        title: "Trip",
-      },
-      {
-        title: "Work",
-      },
-    ]);
+    setTodoTypes(AppTodoTypes);
   }, []);
 
   return <TodoContext.Provider value={values} {...props} />;
