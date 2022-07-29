@@ -1,4 +1,4 @@
-import { Text, View, HStack } from "native-base";
+import { Text, View } from "native-base";
 import { StyleSheet } from "react-native";
 import { TodoItemType } from "../../interfaces/todo.interface";
 import React from "react";
