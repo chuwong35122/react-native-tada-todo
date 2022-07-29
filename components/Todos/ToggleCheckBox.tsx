@@ -13,7 +13,7 @@ const ToggleCheckBox = ({ checked }: ToggleCheckBoxProps) => {
         <View
           width="6"
           height="6"
-          background="blue.200"
+          background="lightBlue.200"
           rounded="md"
           justifyContent="center"
           alignItems="center"
@@ -26,7 +26,7 @@ const ToggleCheckBox = ({ checked }: ToggleCheckBoxProps) => {
         <View
           width="6"
           height="6"
-          background="blue.200"
+          background="lightBlue.200"
           rounded="md"
           borderColor="blue.300"
           borderWidth={2}

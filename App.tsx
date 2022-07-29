@@ -1,5 +1,5 @@
 import { NativeBaseProvider } from "native-base";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TodoContextProvider from "./contexts/TodoContext";
@@ -10,10 +10,17 @@ import HomeScreen from "./screens/HomeScreen";
 import CreateTodoScreen from "./screens/CreateTodoScreen";
 
 const Stack = createNativeStackNavigator<StackNavigationScreenTypes>();
+const themes = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "white",
+  },
+};
 export default function App() {
   return (
     <NativeBaseProvider>
-      <NavigationContainer>
+      <NavigationContainer theme={themes}>
         <TodoContextProvider>
           <SafeAreaProvider>
             <Stack.Navigator>
