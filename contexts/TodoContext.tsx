@@ -5,11 +5,8 @@ import React, {
   SetStateAction,
   useEffect,
 } from "react";
+import { TodoTypes, TodoTypeTitle } from "../interfaces/todo.interface";
 
-export type TodoTypeTitle = "Personal" | "School" | "Trip" | "Work";
-export type TodoTypes = {
-  title: TodoTypeTitle;
-};
 interface TodoContextProps {
   todoTypes: TodoTypes[];
   selectedType: string;
@@ -19,7 +16,7 @@ interface TodoContextProps {
 export const TodoContext = createContext({} as TodoContextProps);
 const TodoContextProvider = ({ ...props }) => {
   const [todoTypes, setTodoTypes] = useState<TodoTypes[]>([]);
-  const [selectedType, setSelectedType] = useState<TodoTypeTitle>("Personal");
+  const [selectedType, setSelectedType] = useState<TodoTypeTitle>("All");
 
   const values: TodoContextProps = {
     todoTypes,
@@ -29,6 +26,7 @@ const TodoContextProvider = ({ ...props }) => {
 
   useEffect(() => {
     setTodoTypes([
+      { title: "All" },
       {
         title: "Personal",
       },
