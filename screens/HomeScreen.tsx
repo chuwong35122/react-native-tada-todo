@@ -1,6 +1,6 @@
 import React from "react";
 import { Fab, VStack, View } from "native-base";
-import { safeAreaViewStyles } from "./../utils/styles/view";
+import { safeAreaViewStyles } from "../styles/view";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationScreenTypes } from "./navigation.types";

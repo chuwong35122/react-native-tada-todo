@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Input, Button, VStack } from "native-base";
 
-import { safeAreaViewStyles } from "./../utils/styles/view";
+import { safeAreaViewStyles } from "../styles/view";
 import TodoColorPicker from "../components/Todos/TodoColorPicker";
 
 const CreateTodoScreen = () => {
