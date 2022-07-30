@@ -26,7 +26,7 @@ const TodoList = () => {
   ];
   return (
     <View>
-      <Text fontSize="20" fontWeight="bold">
+      <Text fontSize="20" fontWeight="bold" mb="2">
         My Todos
       </Text>
       <FlatList

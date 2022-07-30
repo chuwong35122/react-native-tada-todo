@@ -14,7 +14,7 @@ const themes = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: "white",
+    background: "#f7f7f7",
   },
 };
 export default function App() {

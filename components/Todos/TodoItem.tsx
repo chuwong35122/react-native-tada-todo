@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { TodoItemType } from "../../interfaces/todo.interface";
 import React from "react";
 import moment from "moment";
-import ToggleCheckBox from "./ToggleCheckBox";
+import CheckBox from "./CheckBox";
 
 type TodoItemProps = {
   data: TodoItemType;
@@ -15,8 +15,8 @@ const TodoItem = ({ data, index }: TodoItemProps) => {
   return (
     <View
       backgroundColor="#fff"
-      my="2"
-      py="2"
+      my="1"
+      py="1"
       px="4"
       mx="2"
       borderRadius="md"
@@ -24,9 +24,13 @@ const TodoItem = ({ data, index }: TodoItemProps) => {
       flexDirection="row"
       style={styles.card}
     >
-      <ToggleCheckBox checked={data.status} />
+      <CheckBox isChecked={data.status} />
       <View py="2">
-        <Text fontSize="18" fontWeight="semibold">
+        <Text
+          fontSize="20"
+          textDecorationLine={data.status ? "line-through" : null}
+          color={data.status ? "gray.400" : "black"}
+        >
           {data.todo}
         </Text>
         {/* <Text color="gray.400">{mm.format("LLL")}</Text> */}
