@@ -8,6 +8,7 @@ import TodoContextProvider from "./contexts/TodoContext";
 import { StackNavigationScreenTypes } from "./screens/navigation.types";
 import HomeScreen from "./screens/HomeScreen";
 import CreateTodoScreen from "./screens/CreateTodoScreen";
+import ViewTodoScreen from "./screens/ViewTodoScreen";
 
 const Stack = createNativeStackNavigator<StackNavigationScreenTypes>();
 const themes = {
@@ -26,6 +27,7 @@ export default function App() {
             <Stack.Navigator>
               <Stack.Screen name="Home" component={HomeScreen} />
               <Stack.Screen name="CreateTodo" component={CreateTodoScreen} />
+              <Stack.Screen name="ViewTodo" component={ViewTodoScreen} />
             </Stack.Navigator>
           </SafeAreaProvider>
         </TodoContextProvider>

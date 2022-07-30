@@ -1,9 +1,12 @@
 import { Text, View } from "native-base";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { TodoItemType } from "../../interfaces/todo.interface";
 import React from "react";
-import moment from "moment";
 import CheckBox from "./CheckBox";
+import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackNavigationScreenTypes } from "../../screens/navigation.types";
 
 type TodoItemProps = {
   data: TodoItemType;
@@ -11,21 +14,24 @@ type TodoItemProps = {
 };
 
 const TodoItem = ({ data, index }: TodoItemProps) => {
-  const mm = moment(data.date);
+  const navigation =
+    useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
+
   return (
     <View
       backgroundColor="#fff"
       my="1"
-      py="1"
+      py="2.5"
       px="4"
       mx="2"
       borderRadius="md"
       alignItems="center"
+      justifyContent="space-between"
       flexDirection="row"
       style={styles.card}
     >
-      <CheckBox isChecked={data.status} color={data.color} />
-      <View py="2">
+      <View flexDir="row" alignItems="center">
+        <CheckBox isChecked={data.status} color={data.color} />
         <Text
           fontSize="20"
           textDecorationLine={data.status ? "line-through" : null}
@@ -33,8 +39,10 @@ const TodoItem = ({ data, index }: TodoItemProps) => {
         >
           {data.todo}
         </Text>
-        {/* <Text color="gray.400">{mm.format("LLL")}</Text> */}
       </View>
+      <TouchableOpacity onPress={() => navigation.push("ViewTodo", data)}>
+        <Feather name="more-vertical" size={24} color="black" />
+      </TouchableOpacity>
     </View>
   );
 };
