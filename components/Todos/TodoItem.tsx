@@ -43,6 +43,6 @@ export default TodoItem;
 
 const styles = StyleSheet.create({
   card: {
-    elevation: 2,
+    elevation: 0.5,
   },
 });

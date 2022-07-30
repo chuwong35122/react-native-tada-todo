@@ -7,26 +7,17 @@ import { StackNavigationScreenTypes } from "./navigation.types";
 import TodoTypeList from "../components/TodoTypes/TodoTypeList";
 import TodoList from "../components/Todos/TodoList";
 import { AntDesign } from "@expo/vector-icons";
-import { useWindowDimensions } from "react-native";
 
 const HomeScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
-  // const { width, height } = useWindowDimensions();
-
   return (
     <View height="100%">
-      <TodoTypeList />
+      {/* <TodoTypeList /> */}
       <View style={safeAreaViewStyles.styles}>
         <VStack space={4}>
           <TodoList />
-          {/* <Button
-            rounded="full"
-            colorScheme="success"
-            >
-            Create a new Todo
-          </Button> */}
         </VStack>
       </View>
       <Fab

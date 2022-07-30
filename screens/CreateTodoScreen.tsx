@@ -3,16 +3,16 @@ import React, { useState } from "react";
 import { View, Text, Input, Button, VStack } from "native-base";
 
 import { safeAreaViewStyles } from "./../utils/styles/view";
-import TodoTypeCreateList from "../components/TodoTypes/TodoTypeCreateList";
 import { TodoTypeTitle } from "../interfaces/todo.interface";
+import TodoColorPicker from "../components/Todos/TodoColorPicker";
 
 const CreateTodoScreen = () => {
   const [title, setTitle] = useState("");
   const [type, setType] = useState<TodoTypeTitle>("Personal");
   return (
     <View style={safeAreaViewStyles.styles}>
-      <TodoTypeCreateList />
-      <VStack space={4}>
+      <TodoColorPicker />
+      <VStack space={4} mt="20">
         <Input size="md" placeholder="Todo Title" />
         <Button colorScheme="success">Create!</Button>
       </VStack>
