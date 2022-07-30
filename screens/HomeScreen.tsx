@@ -4,7 +4,6 @@ import { safeAreaViewStyles } from "./../utils/styles/view";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationScreenTypes } from "./navigation.types";
-import TodoTypeList from "../components/TodoTypes/TodoTypeList";
 import TodoList from "../components/Todos/TodoList";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -14,7 +13,6 @@ const HomeScreen = () => {
 
   return (
     <View height="100%">
-      {/* <TodoTypeList /> */}
       <View style={safeAreaViewStyles.styles}>
         <VStack space={4}>
           <TodoList />

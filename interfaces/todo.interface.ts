@@ -1,21 +1,18 @@
-export type TodoTypeTitle =
-  | "All"
-  | "Personal"
-  | "Study"
-  | "Trip"
-  | "Work"
-  | "Hobby"
-  | "Friends"
-  | "Love"
-  | "Grocery";
-export type TodoTypes = {
-  title: TodoTypeTitle;
-  icon: string;
-};
+export type TodoColor =
+  | "blue"
+  | "cyan"
+  | "green"
+  | "amber"
+  | "orange"
+  | "rose"
+  | "violet"
+  | "indigo"
+  | "gray"
+  | "black";
 
 export interface TodoItemType {
   todo: string;
   date: Date;
   status: boolean;
-  type: TodoTypeTitle;
+  color: TodoColor;
 }

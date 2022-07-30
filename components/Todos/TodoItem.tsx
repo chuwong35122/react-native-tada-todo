@@ -24,7 +24,7 @@ const TodoItem = ({ data, index }: TodoItemProps) => {
       flexDirection="row"
       style={styles.card}
     >
-      <CheckBox isChecked={data.status} />
+      <CheckBox isChecked={data.status} color={data.color} />
       <View py="2">
         <Text
           fontSize="20"

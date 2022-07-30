@@ -9,19 +9,19 @@ const TodoList = () => {
       todo: "1",
       date: new Date(),
       status: true,
-      type: "Personal",
+      color: "blue",
     },
     {
       todo: "2",
       date: new Date(),
       status: false,
-      type: "Personal",
+      color: "amber",
     },
     {
       todo: "3",
       date: new Date(),
       status: false,
-      type: "Trip",
+      color: "black",
     },
   ];
   return (
