@@ -43,7 +43,10 @@ const CreateTodoScreen = () => {
   }
   return (
     <View style={safeAreaViewStyles.styles}>
-      <TodoColorPicker />
+      <TodoColorPicker
+        selectedColor={selectedColor}
+        setSelectedColor={setSelectedColor}
+      />
       <VStack space={4} mt="20">
         <Input
           size="lg"

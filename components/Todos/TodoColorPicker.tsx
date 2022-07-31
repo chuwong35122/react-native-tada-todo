@@ -1,12 +1,20 @@
 import { View, HStack, VStack, Text } from "native-base";
-import React, { useContext, useEffect, useState } from "react";
+import React, { Dispatch, useContext, useEffect, SetStateAction } from "react";
 import { TodoContext } from "../../contexts/TodoContext";
 import { TodoColorName } from "../../interfaces/todo.interface";
 import ColorPallette from "./ColorPalette";
 
-const TodoColorPicker = () => {
+type TodoColorPickerProps = {
+  selectedColor: TodoColorName;
+  setSelectedColor: Dispatch<SetStateAction<TodoColorName>>;
+};
+
+const TodoColorPicker = ({
+  selectedColor,
+  setSelectedColor,
+}: TodoColorPickerProps) => {
+  // Parse selected color from home screen to create todo screen
   const { selectedTodoColor } = useContext(TodoContext);
-  const [selectedColor, setSelectedColor] = useState<TodoColorName>("Blue");
 
   useEffect(() => {
     if (selectedTodoColor !== "All") {

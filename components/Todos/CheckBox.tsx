@@ -1,12 +1,12 @@
 import { View } from "native-base";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
-import { TodoColor } from "../../interfaces/todo.interface";
+import { TodoColorName } from "../../interfaces/todo.interface";
 import { colors, checkedColors } from "../../constants/colors";
 
 type CheckBoxProps = {
   isChecked: boolean;
-  color: TodoColor;
+  color: TodoColorName;
 };
 
 const CheckBox = ({ isChecked, color }: CheckBoxProps) => {

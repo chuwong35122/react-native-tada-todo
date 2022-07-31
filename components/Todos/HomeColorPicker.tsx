@@ -47,6 +47,7 @@ const HomeColorPicker = () => {
                 mr="2"
                 rounded="full"
                 borderColor={item.color}
+                backgroundColor="white"
                 borderWidth={item.name === selectedTodoColor ? 6 : 0}
                 onPress={() => handlePressColor(item.name)}
               >
