@@ -1,11 +1,12 @@
 import React from "react";
-import { Fab, VStack, View } from "native-base";
+import { Fab, VStack, View, Text } from "native-base";
 import { safeAreaViewStyles } from "../styles/view";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationScreenTypes } from "./navigation.types";
 import TodoList from "../components/Todos/TodoList";
 import { AntDesign } from "@expo/vector-icons";
+import HomeColorPicker from "../components/Todos/HomeColorPicker";
 
 const HomeScreen = () => {
   const navigation =
@@ -14,6 +15,10 @@ const HomeScreen = () => {
   return (
     <View height="100%">
       <View style={safeAreaViewStyles.styles}>
+        <Text fontSize="20" fontWeight="bold" mb="2">
+          My Todos
+        </Text>
+        <HomeColorPicker />
         <VStack space={4}>
           <TodoList />
         </VStack>

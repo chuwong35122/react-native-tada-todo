@@ -9,6 +9,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackNavigationScreenTypes } from "../../screens/navigation.types";
 import { TodoContext } from "../../contexts/TodoContext";
 import { setTodoStatus } from "../../utils/todo";
+import moment from "moment";
 
 type TodoItemProps = {
   data: TodoItemType;
@@ -28,9 +29,7 @@ const TodoItem = ({ data }: TodoItemProps) => {
     <View
       backgroundColor="#fff"
       my="1"
-      py="2.5"
       px="4"
-      mx="2"
       borderRadius="md"
       alignItems="center"
       justifyContent="space-between"
@@ -41,20 +40,28 @@ const TodoItem = ({ data }: TodoItemProps) => {
         flexDir="row"
         alignItems="center"
         onPress={handlePress}
-        width="96%"
+        py="1.5"
       >
         <CheckBox isChecked={data.status} color={data.color} />
-        <Text
-          fontSize="20"
-          textDecorationLine={data.status ? "line-through" : null}
-          color={data.status ? "gray.400" : "black"}
-        >
-          {data.todo}
-        </Text>
+        <View width="84%">
+          <Text
+            fontSize="20"
+            textDecorationLine={data.status ? "line-through" : null}
+            color={data.status ? "gray.400" : "black"}
+            numberOfLines={1}
+          >
+            {data.todo}
+          </Text>
+          <Text fontSize="xs" color="gray.400">
+            {moment(data.date).format("LLL")}
+          </Text>
+        </View>
       </Pressable>
-      <TouchableOpacity onPress={() => navigation.push("ViewTodo", data)}>
-        <Feather name="more-vertical" size={24} color="black" />
-      </TouchableOpacity>
+      <View w="14">
+        <TouchableOpacity onPress={() => navigation.push("ViewTodo", data)}>
+          <Feather name="more-vertical" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

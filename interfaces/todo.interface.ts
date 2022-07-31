@@ -10,6 +10,19 @@ export type TodoColor =
   | "gray"
   | "black";
 
+export type TodoColorName =
+  | "All"
+  | "Blue"
+  | "Cyan"
+  | "Green"
+  | "Amber"
+  | "Orange"
+  | "Rose"
+  | "Violet"
+  | "Indigo"
+  | "Gray"
+  | "Black";
+
 export interface TodoItemType {
   id: string;
   todo: string;

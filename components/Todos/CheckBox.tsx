@@ -1,4 +1,4 @@
-import { Pressable } from "native-base";
+import { View } from "native-base";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
 import { TodoColor } from "../../interfaces/todo.interface";
@@ -11,7 +11,7 @@ type CheckBoxProps = {
 
 const CheckBox = ({ isChecked, color }: CheckBoxProps) => {
   return (
-    <Pressable
+    <View
       width="7"
       height="7"
       rounded="full"
@@ -23,7 +23,7 @@ const CheckBox = ({ isChecked, color }: CheckBoxProps) => {
       mr={4}
     >
       {isChecked ? <Feather name="check" size={20} color="#4b5563" /> : <></>}
-    </Pressable>
+    </View>
   );
 };
 
