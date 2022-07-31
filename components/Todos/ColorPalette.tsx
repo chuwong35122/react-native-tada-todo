@@ -1,12 +1,12 @@
 import { Pressable, useToast, Box, Text } from "native-base";
 import React, { Dispatch, SetStateAction } from "react";
-import { TodoColor } from "../../interfaces/todo.interface";
+import { TodoColorName } from "../../interfaces/todo.interface";
 import { colors } from "../../constants/colors";
 
 type ColorPalletteProps = {
-  color: TodoColor;
-  selectedColor: TodoColor;
-  setSelectedColor: Dispatch<SetStateAction<TodoColor>>;
+  color: TodoColorName;
+  selectedColor: TodoColorName;
+  setSelectedColor: Dispatch<SetStateAction<TodoColorName>>;
 };
 
 const ColorPallette = ({
@@ -16,7 +16,7 @@ const ColorPallette = ({
 }: ColorPalletteProps) => {
   const toast = useToast();
   function handlePress() {
-    if (selectedColor === color) {
+    if (selectedColor === color.toLowerCase()) {
       return;
     }
 

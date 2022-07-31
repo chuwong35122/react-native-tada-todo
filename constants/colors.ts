@@ -1,14 +1,16 @@
-export const colors = {
-  blue: "blue.600",
-  cyan: "cyan.600",
-  green: "green.600",
-  amber: "amber.600",
-  orange: "orange.600",
-  rose: "rose.600",
-  violet: "violet.600",
-  indigo: "indigo.600",
-  gray: "gray.600",
-  black: "black",
+import { ColorType } from "native-base/lib/typescript/components/types";
+
+export const colors: { [key: string]: ColorType } = {
+  Blue: "blue.600",
+  Cyan: "cyan.600",
+  Green: "green.600",
+  Amber: "amber.600",
+  Orange: "orange.600",
+  Rose: "rose.600",
+  Violet: "violet.600",
+  Indigo: "indigo.600",
+  Gray: "gray.600",
+  Black: "black",
 };
 
 export const checkedColors = {

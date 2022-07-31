@@ -5,8 +5,8 @@ import { colors } from "../../constants/colors";
 import { TodoContext } from "../../contexts/TodoContext";
 
 type HomeColorPicker = {
-  color: TodoColor | string;
-  name: TodoColorName | "All";
+  color: TodoColor;
+  name: TodoColorName;
 };
 
 const HomeColorPicker = () => {
@@ -20,12 +20,13 @@ const HomeColorPicker = () => {
   useEffect(() => {
     const keys = Object.keys(colors) as TodoColor[];
     const _data = keys.map((key) => {
-      const name = key.charAt(0).toUpperCase() as TodoColorName;
+      const name = key;
+      name.charAt(0).toUpperCase();
 
       return {
-        name: name,
+        name: name as TodoColorName,
         color: colors[key],
-      };
+      } as HomeColorPicker;
     });
 
     _data.splice(0, 0, { color: "black", name: "All" });

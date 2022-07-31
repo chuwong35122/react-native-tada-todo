@@ -1,73 +1,75 @@
 import { View, HStack, VStack, Text } from "native-base";
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { TodoColor } from "../../interfaces/todo.interface";
+import React, { useContext, useEffect, useState } from "react";
+import { TodoContext } from "../../contexts/TodoContext";
+import { TodoColorName } from "../../interfaces/todo.interface";
 import ColorPallette from "./ColorPalette";
 
-type TodoColorPickerProps = {
-  selectedColor: TodoColor;
-  setSelectedColor: Dispatch<SetStateAction<TodoColor>>;
-};
+const TodoColorPicker = () => {
+  const { selectedTodoColor } = useContext(TodoContext);
+  const [selectedColor, setSelectedColor] = useState<TodoColorName>("Blue");
 
-const TodoColorPicker = ({
-  selectedColor,
-  setSelectedColor,
-}: TodoColorPickerProps) => {
+  useEffect(() => {
+    if (selectedTodoColor !== "All") {
+      setSelectedColor(selectedTodoColor);
+    }
+  }, [selectedTodoColor]);
+
   return (
     <View>
-      <Text color="gray.600" fontSize="xl">
-        Select a todo color
+      <Text color="gray.600" fontSize="lg">
+        Select a color for your To-Do
       </Text>
       <VStack space="2" my="4">
         <HStack justifyContent="space-evenly">
           <ColorPallette
-            color="blue"
+            color="Blue"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
           <ColorPallette
-            color="cyan"
+            color="Cyan"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
           <ColorPallette
-            color="green"
+            color="Green"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
           <ColorPallette
-            color="amber"
+            color="Amber"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
           <ColorPallette
-            color="orange"
+            color="Orange"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
         </HStack>
         <HStack justifyContent="space-evenly">
           <ColorPallette
-            color="rose"
+            color="Rose"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
           <ColorPallette
-            color="violet"
+            color="Violet"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
           <ColorPallette
-            color="indigo"
+            color="Indigo"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
           <ColorPallette
-            color="gray"
+            color="Gray"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
           <ColorPallette
-            color="black"
+            color="Black"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />

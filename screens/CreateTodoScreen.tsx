@@ -3,7 +3,7 @@ import { View, Input, Button, VStack } from "native-base";
 import { v4 as uuidv4 } from "uuid";
 import { safeAreaViewStyles } from "../styles/view";
 import TodoColorPicker from "../components/Todos/TodoColorPicker";
-import { TodoColor, TodoItemType } from "../interfaces/todo.interface";
+import { TodoColorName, TodoItemType } from "../interfaces/todo.interface";
 import "react-native-get-random-values";
 import { StackNavigationScreenTypes } from "./navigation.types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -16,7 +16,7 @@ const CreateTodoScreen = () => {
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
   const [input, setInput] = useState("");
-  const [selectedColor, setSelectedColor] = useState<TodoColor>("blue");
+  const [selectedColor, setSelectedColor] = useState<TodoColorName>("Blue");
   const { setIsTodoUpdate } = useContext(TodoContext);
 
   function handleChangeInput(val: string) {
@@ -43,10 +43,7 @@ const CreateTodoScreen = () => {
   }
   return (
     <View style={safeAreaViewStyles.styles}>
-      <TodoColorPicker
-        selectedColor={selectedColor}
-        setSelectedColor={setSelectedColor}
-      />
+      <TodoColorPicker />
       <VStack space={4} mt="20">
         <Input
           size="lg"

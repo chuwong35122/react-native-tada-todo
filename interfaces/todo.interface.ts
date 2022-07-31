@@ -28,5 +28,5 @@ export interface TodoItemType {
   todo: string;
   date: Date;
   status: boolean;
-  color: TodoColor;
+  color: TodoColorName;
 }
