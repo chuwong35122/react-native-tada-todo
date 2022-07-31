@@ -5,24 +5,22 @@ import { colors } from "../../constants/colors";
 
 type ColorPalletteProps = {
   color: TodoColor;
-  id: number;
-  selectedId: number;
-  setSelectedId: Dispatch<SetStateAction<number>>;
+  selectedColor: TodoColor;
+  setSelectedColor: Dispatch<SetStateAction<TodoColor>>;
 };
 
 const ColorPallette = ({
   color,
-  id,
-  selectedId,
-  setSelectedId,
+  selectedColor,
+  setSelectedColor,
 }: ColorPalletteProps) => {
   const toast = useToast();
   function handlePress() {
-    if (id === selectedId) {
+    if (selectedColor === color) {
       return;
     }
 
-    setSelectedId(id);
+    setSelectedColor(color);
     toast.show({
       duration: 1500,
       render: () => {
@@ -42,7 +40,7 @@ const ColorPallette = ({
     <Pressable
       width="10"
       height="10"
-      bgColor={selectedId === id ? "white" : colors[color]}
+      bgColor={selectedColor === color ? "white" : colors[color]}
       borderColor={colors[color]}
       borderWidth="6"
       rounded="full"

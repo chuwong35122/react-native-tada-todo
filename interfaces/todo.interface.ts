@@ -11,6 +11,7 @@ export type TodoColor =
   | "black";
 
 export interface TodoItemType {
+  id: string;
   todo: string;
   date: Date;
   status: boolean;

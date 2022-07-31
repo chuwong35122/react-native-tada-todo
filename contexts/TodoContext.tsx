@@ -3,31 +3,32 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
-  useEffect,
 } from "react";
-import { TodoTypes, TodoTypeTitle } from "../interfaces/todo.interface";
-import { AppTodoTypes } from "./../components/constants/todoTypes";
+import useAsyncEffect from "../hooks/useAsyncEffect";
+import { TodoItemType } from "../interfaces/todo.interface";
+import { getAllTodo } from "../utils/todo";
 
 interface TodoContextProps {
-  todoTypes: TodoTypes[];
-  selectedType: TodoTypeTitle;
-  setSelectedType: Dispatch<SetStateAction<TodoTypeTitle>>;
+  todoList: TodoItemType[];
+  setTodoLength: Dispatch<SetStateAction<number>>;
 }
 
 export const TodoContext = createContext({} as TodoContextProps);
 const TodoContextProvider = ({ ...props }) => {
-  const [todoTypes, setTodoTypes] = useState<TodoTypes[]>([]);
-  const [selectedType, setSelectedType] = useState<TodoTypeTitle>("All");
+  const [todoList, setTodoList] = useState<TodoItemType[]>([]);
+  const [todoLength, setTodoLength] = useState(0); // used to re-render todoList
+
+  useAsyncEffect(async () => {
+    const _todoList = await getAllTodo();
+    if (_todoList) {
+      setTodoList(_todoList);
+    }
+  }, [todoLength]);
 
   const values: TodoContextProps = {
-    todoTypes,
-    selectedType,
-    setSelectedType,
+    todoList,
+    setTodoLength,
   };
-
-  useEffect(() => {
-    setTodoTypes(AppTodoTypes);
-  }, []);
 
   return <TodoContext.Provider value={values} {...props} />;
 };
