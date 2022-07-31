@@ -1,21 +1,28 @@
-import { Text, View } from "native-base";
+import { Pressable, Text, View } from "native-base";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { TodoItemType } from "../../interfaces/todo.interface";
-import React from "react";
+import React, { useContext } from "react";
 import CheckBox from "./CheckBox";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackNavigationScreenTypes } from "../../screens/navigation.types";
+import { TodoContext } from "../../contexts/TodoContext";
+import { setTodoStatus } from "../../utils/todo";
 
 type TodoItemProps = {
   data: TodoItemType;
-  index: number;
 };
 
-const TodoItem = ({ data, index }: TodoItemProps) => {
+const TodoItem = ({ data }: TodoItemProps) => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
+
+  const { setIsTodoUpdate } = useContext(TodoContext);
+  async function handlePress() {
+    await setTodoStatus(data.id);
+    setIsTodoUpdate((prev) => !prev);
+  }
 
   return (
     <View
@@ -30,8 +37,13 @@ const TodoItem = ({ data, index }: TodoItemProps) => {
       flexDirection="row"
       style={styles.card}
     >
-      <View flexDir="row" alignItems="center">
-        <CheckBox isChecked={data.status} color={data.color} id={data.id} />
+      <Pressable
+        flexDir="row"
+        alignItems="center"
+        onPress={handlePress}
+        width="96%"
+      >
+        <CheckBox isChecked={data.status} color={data.color} />
         <Text
           fontSize="20"
           textDecorationLine={data.status ? "line-through" : null}
@@ -39,7 +51,7 @@ const TodoItem = ({ data, index }: TodoItemProps) => {
         >
           {data.todo}
         </Text>
-      </View>
+      </Pressable>
       <TouchableOpacity onPress={() => navigation.push("ViewTodo", data)}>
         <Feather name="more-vertical" size={24} color="black" />
       </TouchableOpacity>

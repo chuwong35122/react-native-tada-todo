@@ -13,7 +13,7 @@ const TodoList = () => {
       </Text>
       <FlatList
         data={todoList}
-        renderItem={({ item, index }) => <TodoItem data={item} index={index} />}
+        renderItem={({ item }) => <TodoItem data={item} />}
       />
     </View>
   );
