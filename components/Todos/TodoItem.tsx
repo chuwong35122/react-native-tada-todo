@@ -31,7 +31,7 @@ const TodoItem = ({ data, index }: TodoItemProps) => {
       style={styles.card}
     >
       <View flexDir="row" alignItems="center">
-        <CheckBox isChecked={data.status} color={data.color} />
+        <CheckBox isChecked={data.status} color={data.color} id={data.id} />
         <Text
           fontSize="20"
           textDecorationLine={data.status ? "line-through" : null}

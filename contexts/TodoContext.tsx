@@ -3,31 +3,39 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
+  useEffect,
 } from "react";
-import useAsyncEffect from "../hooks/useAsyncEffect";
 import { TodoItemType } from "../interfaces/todo.interface";
 import { getAllTodo } from "../utils/todo";
 
 interface TodoContextProps {
   todoList: TodoItemType[];
-  setTodoLength: Dispatch<SetStateAction<number>>;
+  setIsTodoUpdate: Dispatch<SetStateAction<boolean>>;
 }
 
 export const TodoContext = createContext({} as TodoContextProps);
 const TodoContextProvider = ({ ...props }) => {
   const [todoList, setTodoList] = useState<TodoItemType[]>([]);
-  const [todoLength, setTodoLength] = useState(0); // used to re-render todoList
+  const [isTodoUpdate, setIsTodoUpdate] = useState(true); // used to re-render todoList
 
-  useAsyncEffect(async () => {
-    const _todoList = await getAllTodo();
-    if (_todoList) {
-      setTodoList(_todoList);
+  useEffect(() => {
+    async function fn() {
+      const _todoList = await getAllTodo();
+      if (_todoList) {
+        setTodoList(_todoList);
+      }
+
+      return () => {
+        setIsTodoUpdate((prev) => !prev);
+      };
     }
-  }, [todoLength]);
+
+    fn();
+  }, [isTodoUpdate]);
 
   const values: TodoContextProps = {
     todoList,
-    setTodoLength,
+    setIsTodoUpdate,
   };
 
   return <TodoContext.Provider value={values} {...props} />;

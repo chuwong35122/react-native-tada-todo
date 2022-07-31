@@ -17,7 +17,7 @@ const CreateTodoScreen = () => {
 
   const [input, setInput] = useState("");
   const [selectedColor, setSelectedColor] = useState<TodoColor>("blue");
-  const { setTodoLength } = useContext(TodoContext);
+  const { setIsTodoUpdate } = useContext(TodoContext);
 
   function handleChangeInput(val: string) {
     setInput(val);
@@ -38,7 +38,7 @@ const CreateTodoScreen = () => {
     };
 
     await addTodo(newTodo);
-    setTodoLength((prev) => prev + 1);
+    setIsTodoUpdate((prev) => !prev);
     navigation.goBack();
   }
   return (

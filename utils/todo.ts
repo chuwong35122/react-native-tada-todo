@@ -21,3 +21,16 @@ export async function addTodo(newTodo: TodoItemType) {
 
   return todoList;
 }
+
+export async function setTodoStatus(id: string) {
+  const todoList = await getAllTodo();
+  const index = todoList.findIndex((todo) => todo.id === id);
+
+  if (index === -1) {
+    return;
+  }
+
+  const _status = todoList[index].status;
+  todoList[index].status = !_status;
+  await saveTodo(todoList);
+}
