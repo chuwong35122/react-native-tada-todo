@@ -1,5 +1,5 @@
 import React from "react";
-import { Fab, VStack, View, Text } from "native-base";
+import { Fab, View, Text, Button } from "native-base";
 import { safeAreaViewStyles } from "../styles/view";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -7,6 +7,7 @@ import { StackNavigationScreenTypes } from "./navigation.types";
 import TodoList from "../components/Todos/TodoList";
 import { AntDesign } from "@expo/vector-icons";
 import HomeColorPicker from "../components/Todos/HomeColorPicker";
+import { clearStorage } from "../utils/todo";
 
 const HomeScreen = () => {
   const navigation =
@@ -19,9 +20,7 @@ const HomeScreen = () => {
           My Todos
         </Text>
         <HomeColorPicker />
-        <VStack space={4}>
-          <TodoList />
-        </VStack>
+        <TodoList />
       </View>
       <Fab
         backgroundColor="blue.500"
@@ -31,6 +30,10 @@ const HomeScreen = () => {
         onPress={() => navigation.push("CreateTodo")}
         position="absolute"
       />
+
+      <Button onPress={clearStorage} position="absolute" bottom="0">
+        Clear
+      </Button>
     </View>
   );
 };

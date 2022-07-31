@@ -34,3 +34,7 @@ export async function setTodoStatus(id: string) {
   todoList[index].status = !_status;
   await saveTodo(todoList);
 }
+
+export async function clearStorage() {
+  await AsyncStorage.clear();
+}
