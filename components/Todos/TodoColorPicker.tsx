@@ -14,13 +14,6 @@ const TodoColorPicker = ({
   setSelectedColor,
 }: TodoColorPickerProps) => {
   // Parse selected color from home screen to create todo screen
-  const { selectedTodoColor } = useContext(TodoContext);
-
-  useEffect(() => {
-    if (selectedTodoColor !== "All") {
-      setSelectedColor(selectedTodoColor);
-    }
-  }, [selectedTodoColor]);
 
   return (
     <View>

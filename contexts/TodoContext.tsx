@@ -15,8 +15,6 @@ interface TodoContextProps {
   setMedTodoList: Dispatch<SetStateAction<TodoItemType[]>>;
   lowTodoList: TodoItemType[];
   setLowTodoList: Dispatch<SetStateAction<TodoItemType[]>>;
-  selectedTodoColor: TodoColorName;
-  setSelectedTodoColor: Dispatch<SetStateAction<TodoColorName>>;
   isTodoUpdate: boolean;
   setIsTodoUpdate: Dispatch<SetStateAction<boolean>>;
 }
@@ -28,8 +26,6 @@ const TodoContextProvider = ({ ...props }) => {
   const [medTodoList, setMedTodoList] = useState<TodoItemType[]>([]);
   const [lowTodoList, setLowTodoList] = useState<TodoItemType[]>([]);
   const [isTodoUpdate, setIsTodoUpdate] = useState(true); // used to re-render todoList
-  const [selectedTodoColor, setSelectedTodoColor] =
-    useState<TodoColorName>("All");
 
   useEffect(() => {
     async function fn() {
@@ -52,8 +48,6 @@ const TodoContextProvider = ({ ...props }) => {
     setMedTodoList,
     highTodoList,
     setHighTodoList,
-    selectedTodoColor,
-    setSelectedTodoColor,
     isTodoUpdate,
     setIsTodoUpdate,
   };

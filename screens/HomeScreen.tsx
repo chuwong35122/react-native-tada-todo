@@ -18,21 +18,9 @@ const HomeScreen = () => {
         <Text fontSize="20" ml="2" style={{ fontFamily: "Roboto_500Medium" }}>
           My Tada To-Do
         </Text>
-        <PriorityTodoList
-          priority="@high"
-          title="HIGHEST PRIORITY"
-          bottomLineColor="rose.500"
-        />
-        <PriorityTodoList
-          priority="@med"
-          title="MEDIUM PRIORITY"
-          bottomLineColor="blue.500"
-        />
-        <PriorityTodoList
-          priority="@low"
-          title="LOWEST PRIORITY"
-          bottomLineColor="emerald.500"
-        />
+        <PriorityTodoList priority="@high" title="HIGHEST PRIORITY" />
+        <PriorityTodoList priority="@med" title="MEDIUM PRIORITY" />
+        <PriorityTodoList priority="@low" title="LOWEST PRIORITY" />
       </ScrollView>
       <Fab
         backgroundColor="blue.500"
