@@ -4,7 +4,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationScreenTypes } from "./navigation.types";
 import { AntDesign } from "@expo/vector-icons";
-import HomeColorPicker from "../components/Todos/HomeColorPicker";
 import { clearStorage } from "../utils/todo";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PriorityTodoList from "../components/Todos/PriorityTodoList";
@@ -19,7 +18,6 @@ const HomeScreen = () => {
         <Text fontSize="20" ml="2" style={{ fontFamily: "Roboto_500Medium" }}>
           My Tada To-Do
         </Text>
-        <HomeColorPicker />
         <PriorityTodoList
           priority="@high"
           title="HIGHEST PRIORITY"

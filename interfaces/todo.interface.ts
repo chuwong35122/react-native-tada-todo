@@ -13,14 +13,10 @@ export type TodoColor =
 export type TodoColorName =
   | "All"
   | "Blue"
-  | "Cyan"
   | "Green"
   | "Amber"
-  | "Orange"
   | "Rose"
   | "Violet"
-  | "Indigo"
-  | "Gray"
   | "Black";
 
 export type PriorityTodoKey = "@low" | "@med" | "@high";

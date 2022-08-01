@@ -31,11 +31,7 @@ const TodoColorPicker = ({
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
-          <ColorPallette
-            color="Cyan"
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
+
           <ColorPallette
             color="Green"
             selectedColor={selectedColor}
@@ -43,11 +39,6 @@ const TodoColorPicker = ({
           />
           <ColorPallette
             color="Amber"
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
-          <ColorPallette
-            color="Orange"
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
@@ -63,16 +54,7 @@ const TodoColorPicker = ({
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
-          <ColorPallette
-            color="Indigo"
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
-          <ColorPallette
-            color="Gray"
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
+
           <ColorPallette
             color="Black"
             selectedColor={selectedColor}
