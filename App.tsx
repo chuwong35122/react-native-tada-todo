@@ -1,6 +1,7 @@
 import { NativeBaseProvider } from "native-base";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TodoContextProvider from "./contexts/TodoContext";
 import {
