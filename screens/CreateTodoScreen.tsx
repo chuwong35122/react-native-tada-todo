@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { View, Input, Button, VStack } from "native-base";
+import React, { useState, useContext, useEffect } from "react";
+import { View, Input, Button, VStack, Text } from "native-base";
 import { v4 as uuidv4 } from "uuid";
 import { safeAreaViewStyles } from "../styles/view";
 import TodoColorPicker from "../components/Todos/TodoColorPicker";
@@ -9,6 +9,7 @@ import { StackNavigationScreenTypes } from "./navigation.types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { addTodo } from "../utils/todo";
+import { todoPlaceholder } from "../constants/placeholder";
 import { TodoContext } from "../contexts/TodoContext";
 
 const CreateTodoScreen = () => {
@@ -16,8 +17,15 @@ const CreateTodoScreen = () => {
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
   const [input, setInput] = useState("");
+  const [titlePlaceholder, setTitlePlaceholder] = useState("");
   const [selectedColor, setSelectedColor] = useState<TodoColorName>("Blue");
   const { setIsTodoUpdate } = useContext(TodoContext);
+
+  // random funny placeholder
+  useEffect(() => {
+    const rndIndex = Math.floor(Math.random() * todoPlaceholder.length);
+    setTitlePlaceholder(todoPlaceholder[rndIndex]);
+  }, []);
 
   function handleChangeInput(val: string) {
     setInput(val);
@@ -43,17 +51,23 @@ const CreateTodoScreen = () => {
   }
   return (
     <View style={safeAreaViewStyles.styles}>
-      <TodoColorPicker
-        selectedColor={selectedColor}
-        setSelectedColor={setSelectedColor}
-      />
-      <VStack space={4} mt="20">
-        <Input
-          size="lg"
-          placeholder="Todo Title"
-          value={input}
-          onChangeText={(val) => handleChangeInput(val)}
-        />
+      <VStack space={4}>
+        <View>
+          <Text>To-Do title</Text>
+          <Input
+            size="lg"
+            placeholder={titlePlaceholder}
+            value={input}
+            onChangeText={(val) => handleChangeInput(val)}
+          />
+        </View>
+        <View>
+          <Text>You can also categorize your To-Do with color</Text>
+          <TodoColorPicker
+            selectedColor={selectedColor}
+            setSelectedColor={setSelectedColor}
+          />
+        </View>
         <Button size="lg" bgColor="blue.500" onPress={handleSubmit}>
           CREATE!
         </Button>
