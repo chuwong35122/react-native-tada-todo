@@ -7,6 +7,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { clearStorage } from "../utils/todo";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PriorityTodoList from "../components/Todos/PriorityTodoList";
+import Animated, { ZoomInLeft, ZoomInRight } from "react-native-reanimated";
 
 const HomeScreen = () => {
   const navigation =
@@ -18,9 +19,21 @@ const HomeScreen = () => {
         <Text fontSize="20" ml="2" style={{ fontFamily: "Roboto_500Medium" }}>
           My Ta-Da To-Do
         </Text>
-        <PriorityTodoList priority="@high" title="HIGHEST PRIORITY" />
-        <PriorityTodoList priority="@med" title="MEDIUM PRIORITY" />
-        <PriorityTodoList priority="@low" title="LOWEST PRIORITY" />
+        <Animated.View
+          entering={ZoomInLeft.delay(300).springify().stiffness(60)}
+        >
+          <PriorityTodoList priority="@high" title="HIGHEST PRIORITY" />
+        </Animated.View>
+        <Animated.View
+          entering={ZoomInRight.delay(550).springify().stiffness(60)}
+        >
+          <PriorityTodoList priority="@med" title="MEDIUM PRIORITY" />
+        </Animated.View>
+        <Animated.View
+          entering={ZoomInLeft.delay(750).springify().stiffness(60)}
+        >
+          <PriorityTodoList priority="@low" title="LOWEST PRIORITY" />
+        </Animated.View>
       </ScrollView>
       <Fab
         backgroundColor="blue.500"
