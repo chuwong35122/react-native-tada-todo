@@ -24,7 +24,8 @@ const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
     } else if (priority === "@low") {
       setTodoList(lowTodoList);
     }
-  }, [isTodoUpdate]);
+    console.log({ todoList });
+  }, [isTodoUpdate, highTodoList, medTodoList, lowTodoList]);
 
   return (
     <View
