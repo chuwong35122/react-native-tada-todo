@@ -69,6 +69,7 @@ const CreateTodoScreen = () => {
             size="lg"
             placeholder={titlePlaceholder}
             value={input}
+            autoFocus
             onChangeText={(val) => handleChangeInput(val)}
           />
         </View>
