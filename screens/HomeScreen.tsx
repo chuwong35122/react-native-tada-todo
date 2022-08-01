@@ -1,5 +1,5 @@
 import React from "react";
-import { Fab, View, Text, Button } from "native-base";
+import { Fab, View, Text, Button, ScrollView } from "native-base";
 import { safeAreaViewStyles } from "../styles/view";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -14,14 +14,12 @@ const HomeScreen = () => {
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
   return (
-    <View height="100%">
-      <View style={safeAreaViewStyles.styles}>
-        <Text fontSize="20" fontWeight="bold" mb="2">
-          My Todos
-        </Text>
-        <HomeColorPicker />
-        <TodoList />
-      </View>
+    <View flex="1">
+      <Text fontSize="20" mb="2" ml="2">
+        My Todos
+      </Text>
+      <HomeColorPicker />
+      <TodoList />
       <Fab
         backgroundColor="blue.500"
         size="lg"

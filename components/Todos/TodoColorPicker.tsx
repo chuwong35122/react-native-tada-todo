@@ -1,4 +1,4 @@
-import { View, HStack, VStack, Text } from "native-base";
+import { View, HStack, VStack } from "native-base";
 import React, { Dispatch, useContext, useEffect, SetStateAction } from "react";
 import { TodoContext } from "../../contexts/TodoContext";
 import { TodoColorName } from "../../interfaces/todo.interface";
@@ -24,9 +24,6 @@ const TodoColorPicker = ({
 
   return (
     <View>
-      <Text color="gray.600" fontSize="lg">
-        Select a color for your To-Do
-      </Text>
       <VStack space="2" my="4">
         <HStack justifyContent="space-evenly">
           <ColorPallette

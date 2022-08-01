@@ -44,7 +44,7 @@ const HomeColorPicker = () => {
                 height="12"
                 alignItems="center"
                 justifyContent="center"
-                mr="2"
+                mx="2"
                 rounded="full"
                 borderColor={item.color}
                 backgroundColor="white"
