@@ -59,14 +59,10 @@ const CreateTodoScreen = () => {
   return (
     <SafeAreaView>
       <VStack space={4} mx="2">
-        <HStack justifyContent="space-between">
-          <Text fontSize="xl" fontFamily="Roboto_500Medium">
-            Create a To-Do
-          </Text>
-          <Text fontSize="xl" fontFamily="Roboto_500Medium">
-            Create a To-Do
-          </Text>
-        </HStack>
+        <Text fontSize="xl" fontFamily="Roboto_500Medium">
+          Create a To-Do
+        </Text>
+
         <View>
           <Text fontFamily="Roboto_400Regular">Set a title</Text>
           <Input
