@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TodoContextProvider from "./contexts/TodoContext";
 import {
   useFonts,
+  Roboto_300Light,
   Roboto_400Regular,
   Roboto_500Medium,
   Roboto_700Bold,
@@ -28,6 +29,7 @@ const themes = {
 
 export default function App() {
   const [fontsLoaded] = useFonts({
+    Roboto_300Light,
     Roboto_400Regular,
     Roboto_500Medium,
     Roboto_700Bold,
@@ -52,7 +54,13 @@ export default function App() {
                 component={HomeScreen}
                 options={{ headerShown: false }}
               />
-              <Stack.Screen name="CreateTodo" component={CreateTodoScreen} />
+              <Stack.Screen
+                name="CreateTodo"
+                component={CreateTodoScreen}
+                options={{
+                  headerShown: false,
+                }}
+              />
               <Stack.Screen name="ViewTodo" component={ViewTodoScreen} />
             </Stack.Navigator>
           </SafeAreaProvider>

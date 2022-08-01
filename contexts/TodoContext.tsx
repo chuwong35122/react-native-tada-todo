@@ -40,10 +40,6 @@ const TodoContextProvider = ({ ...props }) => {
       if (high) setHighTodoList(high);
       if (med) setMedTodoList(med);
       if (low) setLowTodoList(low);
-
-      return () => {
-        setIsTodoUpdate((prev) => !prev);
-      };
     }
 
     fn();

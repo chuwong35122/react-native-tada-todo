@@ -22,17 +22,17 @@ const HomeScreen = () => {
         <HomeColorPicker />
         <PriorityTodoList
           priority="@high"
-          title="Highest Priority"
+          title="HIGHEST PRIORITY"
           bottomLineColor="rose.500"
         />
         <PriorityTodoList
           priority="@med"
-          title="Medium Priority"
+          title="MEDIUM PRIORITY"
           bottomLineColor="blue.500"
         />
         <PriorityTodoList
           priority="@low"
-          title="Lowest Priority"
+          title="LOWEST PRIORITY"
           bottomLineColor="emerald.500"
         />
       </ScrollView>

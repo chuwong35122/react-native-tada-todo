@@ -70,6 +70,6 @@ export default TodoItem;
 
 const styles = StyleSheet.create({
   card: {
-    elevation: 0.5,
+    elevation: 1.5,
   },
 });

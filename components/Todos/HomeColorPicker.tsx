@@ -33,7 +33,7 @@ const HomeColorPicker = () => {
     setData(_data);
   }, []);
   return (
-    <View flexDir="row" alignItems="center" my="2">
+    <View flexDir="row" alignItems="center" my="4">
       <FlatList
         data={data}
         renderItem={({ item }) => (

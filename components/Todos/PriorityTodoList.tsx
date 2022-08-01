@@ -33,40 +33,50 @@ const PriorityTodoList = ({
   }, [isTodoUpdate]);
 
   return (
-    <View mx="4">
-      <Text fontSize="lg">{title}</Text>
+    <View
+      mx="4"
+      borderRadius="lg"
+      my="2"
+      backgroundColor="white"
+      maxHeight={height * 0.4}
+      style={styles.card}
+      // borderLeftColor={bottomLineColor}
+      // borderLeftWidth="4"
+      p="2"
+    >
+      <View
+        flexDir="row"
+        justifyContent="space-between"
+        alignItems="center"
+        mb="2"
+      >
+        <Text fontSize="md" fontFamily="Roboto_400Regular">
+          {title}
+        </Text>
+        <Text fontFamily="Roboto_300Light" color="gray.600">
+          {todoList.length} items
+        </Text>
+      </View>
       {todoList.length > 0 ? (
-        <View
-          w="full"
-          borderRadius="lg"
-          my="2"
-          backgroundColor="white"
-          height={height * 0.4}
-          style={styles.card}
-          borderBottomColor={bottomLineColor}
-          borderBottomWidth="6"
-          p="2"
-        >
+        <View borderLeftColor={bottomLineColor} borderLeftWidth="4" pl="1">
           {todoList.map((item, key) => {
             return <TodoItem data={item} key={key} />;
           })}
         </View>
       ) : (
         <View
-          w="full"
-          borderRadius="lg"
-          my="2"
-          backgroundColor="white"
-          p="4"
-          style={styles.card}
-          borderBottomColor={bottomLineColor}
-          borderBottomWidth="6"
-          flexDir="row"
           alignItems="center"
           justifyContent="center"
+          borderLeftColor={bottomLineColor}
+          borderLeftWidth="4"
         >
-          <Text fontSize="xl" color="gray.400">
-            There's no To-Do yet
+          <Text
+            fontSize="md"
+            color="gray.400"
+            fontFamily="Roboto_300Light"
+            my="4"
+          >
+            Yep, it is empty...
           </Text>
         </View>
       )}

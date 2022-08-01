@@ -16,6 +16,7 @@ import { addTodo } from "../utils/todo";
 import { todoPlaceholder } from "../constants/placeholder";
 import { TodoContext } from "../contexts/TodoContext";
 import { Feather } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const CreateTodoScreen = () => {
   const navigation =
@@ -57,10 +58,13 @@ const CreateTodoScreen = () => {
     navigation.goBack();
   }
   return (
-    <View style={safeAreaViewStyles.styles}>
-      <VStack space={4}>
+    <SafeAreaView>
+      <VStack space={4} mx="2">
+        <Text fontSize="xl" fontFamily="Roboto_500Medium">
+          Create a To-Do
+        </Text>
         <View>
-          <Text>To-Do title</Text>
+          <Text fontFamily="Roboto_400Regular">To-Do title</Text>
           <Input
             size="lg"
             placeholder={titlePlaceholder}
@@ -69,7 +73,7 @@ const CreateTodoScreen = () => {
           />
         </View>
         <View>
-          <Text>Set priority</Text>
+          <Text fontFamily="Roboto_400Regular">Set priority</Text>
           <Select
             selectedValue={priority}
             accessibilityLabel="Choose To-Do priority"
@@ -80,6 +84,8 @@ const CreateTodoScreen = () => {
               endIcon: <Feather name="check" size={24} color="black" />,
             }}
             mt={1}
+            fontFamily="Roboto_400Regular"
+            fontSize="lg"
             onValueChange={(value) => setPriority(value as PriorityTodoKey)}
           >
             <Select.Item label="Highest" value="@high" />
@@ -88,7 +94,7 @@ const CreateTodoScreen = () => {
           </Select>
         </View>
         <View>
-          <Text>Add a color</Text>
+          <Text fontFamily="Roboto_400Regular">Add a color</Text>
           <TodoColorPicker
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
@@ -97,8 +103,16 @@ const CreateTodoScreen = () => {
         <Button size="lg" bgColor="blue.500" onPress={handleSubmit}>
           CREATE!
         </Button>
+        <Button
+          size="lg"
+          variant="outline"
+          onPress={() => navigation.goBack()}
+          colorScheme="black"
+        >
+          Back
+        </Button>
       </VStack>
-    </View>
+    </SafeAreaView>
   );
 };
 
