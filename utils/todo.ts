@@ -35,6 +35,13 @@ export async function setTodoStatus(id: string, key: PriorityTodoKey) {
   await saveTodo(todoList, key);
 }
 
+export async function removeTodoItem(id: string, key: PriorityTodoKey) {
+  const todoList = await getAllTodo(key);
+  const filtered = todoList.filter((todo) => todo.id !== id);
+  console.log(filtered);
+  await saveTodo(filtered, key);
+}
+
 export async function clearStorage() {
   await AsyncStorage.clear();
 }

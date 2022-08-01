@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
 import { Text, View } from "native-base";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { PriorityTodoKey, TodoItemType } from "../../interfaces/todo.interface";
 import { TodoContext } from "../../contexts/TodoContext";
 import TodoItem from "./TodoItem";
+import { removeTodoItem } from "../../utils/todo";
 
 type PriorityTodoListProps = {
   priority: PriorityTodoKey;
@@ -11,9 +12,19 @@ type PriorityTodoListProps = {
 };
 
 const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
-  const { highTodoList, medTodoList, lowTodoList, isTodoUpdate } =
-    useContext(TodoContext);
+  const {
+    highTodoList,
+    medTodoList,
+    lowTodoList,
+    isTodoUpdate,
+    setIsTodoUpdate,
+  } = useContext(TodoContext);
   const [todoList, setTodoList] = useState<TodoItemType[]>([]);
+
+  const onRemoveTodo = useCallback(async (data: TodoItemType) => {
+    await removeTodoItem(data.id, data.priority);
+    setIsTodoUpdate((prev) => !prev);
+  }, []);
 
   useEffect(() => {
     if (priority === "@high") {
@@ -48,7 +59,9 @@ const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
       {todoList.length > 0 ? (
         <View pl="1">
           {todoList.map((item, key) => {
-            return <TodoItem data={item} key={key} />;
+            return (
+              <TodoItem data={item} onRemoveTodo={onRemoveTodo} key={key} />
+            );
           })}
         </View>
       ) : (

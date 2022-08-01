@@ -1,7 +1,6 @@
 import { NativeBaseProvider } from "native-base";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TodoContextProvider from "./contexts/TodoContext";
 import {
@@ -18,6 +17,7 @@ import { StackNavigationScreenTypes } from "./screens/navigation.types";
 import HomeScreen from "./screens/HomeScreen";
 import CreateTodoScreen from "./screens/CreateTodoScreen";
 import ViewTodoScreen from "./screens/ViewTodoScreen";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const Stack = createNativeStackNavigator<StackNavigationScreenTypes>();
 const themes = {
@@ -46,27 +46,29 @@ export default function App() {
 
   return (
     <NativeBaseProvider>
-      <NavigationContainer theme={themes}>
-        <TodoContextProvider>
-          <SafeAreaProvider>
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="CreateTodo"
-                component={CreateTodoScreen}
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen name="ViewTodo" component={ViewTodoScreen} />
-            </Stack.Navigator>
-          </SafeAreaProvider>
-        </TodoContextProvider>
-      </NavigationContainer>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer theme={themes}>
+          <TodoContextProvider>
+            <SafeAreaProvider>
+              <Stack.Navigator>
+                <Stack.Screen
+                  name="Home"
+                  component={HomeScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="CreateTodo"
+                  component={CreateTodoScreen}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen name="ViewTodo" component={ViewTodoScreen} />
+              </Stack.Navigator>
+            </SafeAreaProvider>
+          </TodoContextProvider>
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </NativeBaseProvider>
   );
 }
