@@ -1,4 +1,4 @@
-import { useWindowDimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { Text, View } from "native-base";
 import React, { useContext, useEffect, useState } from "react";
 import { PriorityTodoKey, TodoItemType } from "../../interfaces/todo.interface";
@@ -11,7 +11,6 @@ type PriorityTodoListProps = {
 };
 
 const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
-  const { height } = useWindowDimensions();
   const { highTodoList, medTodoList, lowTodoList, isTodoUpdate } =
     useContext(TodoContext);
   const [todoList, setTodoList] = useState<TodoItemType[]>([]);
@@ -24,7 +23,6 @@ const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
     } else if (priority === "@low") {
       setTodoList(lowTodoList);
     }
-    console.log({ todoList });
   }, [isTodoUpdate, highTodoList, medTodoList, lowTodoList]);
 
   return (
@@ -33,7 +31,6 @@ const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
       borderRadius="lg"
       my="2"
       backgroundColor="white"
-      maxHeight={height * 0.4}
       style={styles.card}
       p="2"
     >

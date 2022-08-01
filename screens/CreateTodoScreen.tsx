@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, Input, Button, VStack, Text, Select } from "native-base";
+import { View, Input, Button, VStack, Text, Select, HStack } from "native-base";
 import { v4 as uuidv4 } from "uuid";
-import { safeAreaViewStyles } from "../styles/view";
 import TodoColorPicker from "../components/Todos/TodoColorPicker";
 import {
   PriorityTodoKey,
@@ -60,11 +59,16 @@ const CreateTodoScreen = () => {
   return (
     <SafeAreaView>
       <VStack space={4} mx="2">
-        <Text fontSize="xl" fontFamily="Roboto_500Medium">
-          Create a To-Do
-        </Text>
+        <HStack justifyContent="space-between">
+          <Text fontSize="xl" fontFamily="Roboto_500Medium">
+            Create a To-Do
+          </Text>
+          <Text fontSize="xl" fontFamily="Roboto_500Medium">
+            Create a To-Do
+          </Text>
+        </HStack>
         <View>
-          <Text fontFamily="Roboto_400Regular">To-Do title</Text>
+          <Text fontFamily="Roboto_400Regular">Set a title</Text>
           <Input
             size="lg"
             placeholder={titlePlaceholder}
@@ -83,7 +87,6 @@ const CreateTodoScreen = () => {
               borderRadius: "lg",
               endIcon: <Feather name="check" size={24} color="black" />,
             }}
-            mt={1}
             fontFamily="Roboto_400Regular"
             fontSize="lg"
             onValueChange={(value) => setPriority(value as PriorityTodoKey)}

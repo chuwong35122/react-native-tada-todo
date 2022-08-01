@@ -16,7 +16,7 @@ const HomeScreen = () => {
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <Text fontSize="20" ml="2" style={{ fontFamily: "Roboto_500Medium" }}>
-          My Tada To-Do
+          My Ta-Da To-Do
         </Text>
         <PriorityTodoList priority="@high" title="HIGHEST PRIORITY" />
         <PriorityTodoList priority="@med" title="MEDIUM PRIORITY" />

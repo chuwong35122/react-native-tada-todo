@@ -1,6 +1,5 @@
 import { View, HStack, VStack } from "native-base";
-import React, { Dispatch, useContext, useEffect, SetStateAction } from "react";
-import { TodoContext } from "../../contexts/TodoContext";
+import React, { Dispatch, SetStateAction } from "react";
 import { TodoColorName } from "../../interfaces/todo.interface";
 import ColorPallette from "./ColorPalette";
 

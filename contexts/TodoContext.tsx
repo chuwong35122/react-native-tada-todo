@@ -21,7 +21,6 @@ interface TodoContextProps {
 
 export const TodoContext = createContext({} as TodoContextProps);
 const TodoContextProvider = ({ ...props }) => {
-  // const [todoList, setTodoList] = useState<TodoItemType[]>([]);
   const [highTodoList, setHighTodoList] = useState<TodoItemType[]>([]);
   const [medTodoList, setMedTodoList] = useState<TodoItemType[]>([]);
   const [lowTodoList, setLowTodoList] = useState<TodoItemType[]>([]);
@@ -36,6 +35,10 @@ const TodoContextProvider = ({ ...props }) => {
       setHighTodoList(high);
       setMedTodoList(med);
       setLowTodoList(low);
+
+      return () => {
+        null;
+      };
     }
 
     fn();
