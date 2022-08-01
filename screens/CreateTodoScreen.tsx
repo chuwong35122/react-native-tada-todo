@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, Input, Button, VStack, Text, Select, HStack } from "native-base";
+import { View, Input, Button, VStack, Text, Select } from "native-base";
 import { v4 as uuidv4 } from "uuid";
 import TodoColorPicker from "../components/Todos/TodoColorPicker";
 import {
@@ -102,12 +102,7 @@ const CreateTodoScreen = () => {
         <Button size="lg" bgColor="blue.500" onPress={handleSubmit}>
           CREATE!
         </Button>
-        <Button
-          size="lg"
-          variant="outline"
-          onPress={() => navigation.goBack()}
-          colorScheme="black"
-        >
+        <Button size="lg" variant="outline" onPress={() => navigation.goBack()}>
           Back
         </Button>
       </VStack>
