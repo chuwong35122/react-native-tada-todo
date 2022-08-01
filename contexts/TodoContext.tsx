@@ -33,9 +33,9 @@ const TodoContextProvider = ({ ...props }) => {
       const med = await getAllTodo("@med");
       const low = await getAllTodo("@low");
 
-      if (high) setHighTodoList(high);
-      if (med) setMedTodoList(med);
-      if (low) setLowTodoList(low);
+      setHighTodoList(high);
+      setMedTodoList(med);
+      setLowTodoList(low);
     }
 
     fn();
