@@ -9,25 +9,37 @@ import { TodoColorName, TodoItemType } from "../interfaces/todo.interface";
 import { getAllTodo } from "../utils/todo";
 
 interface TodoContextProps {
-  todoList: TodoItemType[];
-  setIsTodoUpdate: Dispatch<SetStateAction<boolean>>;
+  highTodoList: TodoItemType[];
+  setHighTodoList: Dispatch<SetStateAction<TodoItemType[]>>;
+  medTodoList: TodoItemType[];
+  setMedTodoList: Dispatch<SetStateAction<TodoItemType[]>>;
+  lowTodoList: TodoItemType[];
+  setLowTodoList: Dispatch<SetStateAction<TodoItemType[]>>;
   selectedTodoColor: TodoColorName;
   setSelectedTodoColor: Dispatch<SetStateAction<TodoColorName>>;
+  isTodoUpdate: boolean;
+  setIsTodoUpdate: Dispatch<SetStateAction<boolean>>;
 }
 
 export const TodoContext = createContext({} as TodoContextProps);
 const TodoContextProvider = ({ ...props }) => {
-  const [todoList, setTodoList] = useState<TodoItemType[]>([]);
+  // const [todoList, setTodoList] = useState<TodoItemType[]>([]);
+  const [highTodoList, setHighTodoList] = useState<TodoItemType[]>([]);
+  const [medTodoList, setMedTodoList] = useState<TodoItemType[]>([]);
+  const [lowTodoList, setLowTodoList] = useState<TodoItemType[]>([]);
   const [isTodoUpdate, setIsTodoUpdate] = useState(true); // used to re-render todoList
   const [selectedTodoColor, setSelectedTodoColor] =
     useState<TodoColorName>("All");
 
   useEffect(() => {
     async function fn() {
-      const _todoList = await getAllTodo();
-      if (_todoList) {
-        setTodoList(_todoList);
-      }
+      const high = await getAllTodo("@high");
+      const med = await getAllTodo("@med");
+      const low = await getAllTodo("@low");
+
+      if (high) setHighTodoList(high);
+      if (med) setMedTodoList(med);
+      if (low) setLowTodoList(low);
 
       return () => {
         setIsTodoUpdate((prev) => !prev);
@@ -38,10 +50,16 @@ const TodoContextProvider = ({ ...props }) => {
   }, [isTodoUpdate]);
 
   const values: TodoContextProps = {
-    todoList,
-    setIsTodoUpdate,
+    lowTodoList,
+    setLowTodoList,
+    medTodoList,
+    setMedTodoList,
+    highTodoList,
+    setHighTodoList,
     selectedTodoColor,
     setSelectedTodoColor,
+    isTodoUpdate,
+    setIsTodoUpdate,
   };
 
   return <TodoContext.Provider value={values} {...props} />;

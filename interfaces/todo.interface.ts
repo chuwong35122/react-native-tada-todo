@@ -23,10 +23,12 @@ export type TodoColorName =
   | "Gray"
   | "Black";
 
+export type PriorityTodoKey = "@low" | "@med" | "@high";
 export interface TodoItemType {
   id: string;
   todo: string;
   date: Date;
   status: boolean;
+  priority: PriorityTodoKey;
   color: TodoColorName;
 }

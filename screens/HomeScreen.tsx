@@ -1,25 +1,41 @@
 import React from "react";
-import { Fab, View, Text, Button, ScrollView } from "native-base";
-import { safeAreaViewStyles } from "../styles/view";
+import { Fab, Text, Button, ScrollView } from "native-base";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationScreenTypes } from "./navigation.types";
-import TodoList from "../components/Todos/TodoList";
 import { AntDesign } from "@expo/vector-icons";
 import HomeColorPicker from "../components/Todos/HomeColorPicker";
 import { clearStorage } from "../utils/todo";
+import { SafeAreaView } from "react-native-safe-area-context";
+import PriorityTodoList from "../components/Todos/PriorityTodoList";
 
 const HomeScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
   return (
-    <View flex="1">
-      <Text fontSize="20" mb="2" ml="2">
-        My Todos
-      </Text>
-      <HomeColorPicker />
-      <TodoList />
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView>
+        <Text fontSize="20" ml="2" style={{ fontFamily: "Roboto_500Medium" }}>
+          My Tada To-Do
+        </Text>
+        <HomeColorPicker />
+        <PriorityTodoList
+          priority="@high"
+          title="Highest Priority"
+          bottomLineColor="rose.500"
+        />
+        <PriorityTodoList
+          priority="@med"
+          title="Medium Priority"
+          bottomLineColor="blue.500"
+        />
+        <PriorityTodoList
+          priority="@low"
+          title="Lowest Priority"
+          bottomLineColor="emerald.500"
+        />
+      </ScrollView>
       <Fab
         backgroundColor="blue.500"
         size="lg"
@@ -32,7 +48,7 @@ const HomeScreen = () => {
       <Button onPress={clearStorage} position="absolute" bottom="0">
         Clear
       </Button>
-    </View>
+    </SafeAreaView>
   );
 };
 

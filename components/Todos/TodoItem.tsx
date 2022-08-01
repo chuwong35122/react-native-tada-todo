@@ -21,7 +21,7 @@ const TodoItem = ({ data }: TodoItemProps) => {
 
   const { setIsTodoUpdate } = useContext(TodoContext);
   async function handlePress() {
-    await setTodoStatus(data.id);
+    await setTodoStatus(data.id, data.priority);
     setIsTodoUpdate((prev) => !prev);
   }
 

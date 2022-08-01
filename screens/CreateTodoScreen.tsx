@@ -1,9 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, Input, Button, VStack, Text } from "native-base";
+import { View, Input, Button, VStack, Text, Select } from "native-base";
 import { v4 as uuidv4 } from "uuid";
 import { safeAreaViewStyles } from "../styles/view";
 import TodoColorPicker from "../components/Todos/TodoColorPicker";
-import { TodoColorName, TodoItemType } from "../interfaces/todo.interface";
+import {
+  PriorityTodoKey,
+  TodoColorName,
+  TodoItemType,
+} from "../interfaces/todo.interface";
 import "react-native-get-random-values";
 import { StackNavigationScreenTypes } from "./navigation.types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -11,6 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import { addTodo } from "../utils/todo";
 import { todoPlaceholder } from "../constants/placeholder";
 import { TodoContext } from "../contexts/TodoContext";
+import { Feather } from "@expo/vector-icons";
 
 const CreateTodoScreen = () => {
   const navigation =
@@ -18,6 +23,7 @@ const CreateTodoScreen = () => {
 
   const [input, setInput] = useState("");
   const [titlePlaceholder, setTitlePlaceholder] = useState("");
+  const [priority, setPriority] = useState<PriorityTodoKey>("@high");
   const [selectedColor, setSelectedColor] = useState<TodoColorName>("Blue");
   const { setIsTodoUpdate } = useContext(TodoContext);
 
@@ -39,13 +45,14 @@ const CreateTodoScreen = () => {
     const id = uuidv4();
     const newTodo: TodoItemType = {
       id,
+      priority,
       todo: input,
       date: new Date(),
       status: false,
       color: selectedColor,
     };
 
-    await addTodo(newTodo);
+    await addTodo(newTodo, priority);
     setIsTodoUpdate((prev) => !prev);
     navigation.goBack();
   }
@@ -62,7 +69,26 @@ const CreateTodoScreen = () => {
           />
         </View>
         <View>
-          <Text>You can also categorize your To-Do with color</Text>
+          <Text>Set priority</Text>
+          <Select
+            selectedValue={priority}
+            accessibilityLabel="Choose To-Do priority"
+            placeholder="Priority"
+            _selectedItem={{
+              bg: "blue.100",
+              borderRadius: "lg",
+              endIcon: <Feather name="check" size={24} color="black" />,
+            }}
+            mt={1}
+            onValueChange={(value) => setPriority(value as PriorityTodoKey)}
+          >
+            <Select.Item label="Highest" value="@high" />
+            <Select.Item label="Medium" value="@med" />
+            <Select.Item label="Lowest" value="@low" />
+          </Select>
+        </View>
+        <View>
+          <Text>Add a color</Text>
           <TodoColorPicker
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}

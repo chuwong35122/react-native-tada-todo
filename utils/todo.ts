@@ -1,8 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { TodoItemType } from "../interfaces/todo.interface";
+import { PriorityTodoKey, TodoItemType } from "../interfaces/todo.interface";
 
-export async function getAllTodo() {
-  const result = await AsyncStorage.getItem("@todo");
+export async function getAllTodo(key: PriorityTodoKey) {
+  const result = await AsyncStorage.getItem(key);
   if (result) {
     return JSON.parse(result) as TodoItemType[];
   }
@@ -10,20 +10,20 @@ export async function getAllTodo() {
   return [] as TodoItemType[];
 }
 
-export async function saveTodo(todoList: TodoItemType[]) {
-  await AsyncStorage.setItem("@todo", JSON.stringify(todoList));
+export async function saveTodo(todoList: TodoItemType[], key: PriorityTodoKey) {
+  await AsyncStorage.setItem(key, JSON.stringify(todoList));
 }
 
-export async function addTodo(newTodo: TodoItemType) {
-  const todoList = await getAllTodo();
+export async function addTodo(newTodo: TodoItemType, key: PriorityTodoKey) {
+  const todoList = await getAllTodo(key);
   todoList.splice(0, 0, newTodo);
-  saveTodo(todoList);
+  saveTodo(todoList, key);
 
   return todoList;
 }
 
-export async function setTodoStatus(id: string) {
-  const todoList = await getAllTodo();
+export async function setTodoStatus(id: string, key: PriorityTodoKey) {
+  const todoList = await getAllTodo(key);
   const index = todoList.findIndex((todo) => todo.id === id);
 
   if (index === -1) {
@@ -32,7 +32,7 @@ export async function setTodoStatus(id: string) {
 
   const _status = todoList[index].status;
   todoList[index].status = !_status;
-  await saveTodo(todoList);
+  await saveTodo(todoList, key);
 }
 
 export async function clearStorage() {
