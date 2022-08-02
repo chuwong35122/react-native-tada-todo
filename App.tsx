@@ -10,7 +10,7 @@ import {
   Roboto_500Medium,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
-import { View, Text } from "react-native";
+import { View, Text, LogBox } from "react-native";
 
 // screens
 import { StackNavigationScreenTypes } from "./screens/navigation.types";
@@ -19,6 +19,10 @@ import CreateTodoScreen from "./screens/CreateTodoScreen";
 import ViewTodoScreen from "./screens/ViewTodoScreen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingScreen from "./screens/SettingScreen";
+
+LogBox.ignoreLogs([
+  "ViewPropTypes will be removed from React Native. Migrate to ViewPropTypes exported from 'deprecated-react-native-prop-types'.",
+]);
 
 const Stack = createNativeStackNavigator<StackNavigationScreenTypes>();
 const themes = {

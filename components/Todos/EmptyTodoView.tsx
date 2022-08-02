@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
-import { Button, StyleSheet } from "react-native";
 import LottieView from "lottie-react-native";
 import { View, Text } from "native-base";
+import Animated, { ZoomIn } from "react-native-reanimated";
 
 export default function EmptyTodoView() {
   const animation = useRef(null);
@@ -11,7 +11,7 @@ export default function EmptyTodoView() {
   }, []);
 
   return (
-    <View>
+    <Animated.View entering={ZoomIn}>
       <LottieView
         autoPlay
         ref={animation}
@@ -30,6 +30,6 @@ export default function EmptyTodoView() {
           Create your first To-Do item by pressing the + button!
         </Text>
       </View>
-    </View>
+    </Animated.View>
   );
 }
