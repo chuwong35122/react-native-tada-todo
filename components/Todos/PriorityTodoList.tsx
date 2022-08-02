@@ -38,23 +38,33 @@ const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
       my="2"
       backgroundColor="white"
       style={styles.card}
-      p="2"
     >
       <View
         flexDir="row"
         justifyContent="space-between"
         alignItems="center"
-        mb="2"
+        bgColor="black"
+        borderTopRadius="lg"
+        p="3"
       >
-        <Text fontSize="md" fontFamily="Roboto_400Regular">
+        <Text fontSize="md" color="white" fontFamily="Roboto_500Medium">
           {title}
         </Text>
-        <Text fontFamily="Roboto_300Light">{todoList.length} items</Text>
+        <Text fontFamily="Roboto_300Light" color="white">
+          {todoList.length} items
+        </Text>
       </View>
       {todoList.length > 0 ? (
         <View pl="1">
-          {todoList.map((item) => (
-            <TodoItem data={item} onRemoveTodo={onRemoveTodo} key={item.id} />
+          {todoList.map((item, key) => (
+            <View>
+              <TodoItem data={item} onRemoveTodo={onRemoveTodo} key={item.id} />
+              {key !== todoList.length - 1 && (
+                <View w="full" px="3">
+                  <View w="full" bgColor="light.200" style={{ height: 1 }} />
+                </View>
+              )}
+            </View>
           ))}
         </View>
       ) : (
@@ -63,6 +73,7 @@ const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
           justifyContent="center"
           borderLeftColor="gray.200"
           borderLeftWidth="4"
+          m="2"
         >
           <Text
             fontSize="md"
@@ -82,6 +93,6 @@ export default PriorityTodoList;
 
 const styles = StyleSheet.create({
   card: {
-    elevation: 0.5,
+    elevation: 1,
   },
 });

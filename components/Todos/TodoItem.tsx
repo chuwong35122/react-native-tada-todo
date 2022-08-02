@@ -102,7 +102,7 @@ const TodoItem = ({ data, onRemoveTodo }: TodoItemProps) => {
     <Animated.View style={[styles.card, reanimatedItemHeight]}>
       <Animated.View style={reanimatedIconStyle}>
         <View position="absolute" top="6" right="8">
-          <Feather name="trash-2" size={26} color="red" />
+          <Feather name="trash-2" size={26} color="black" />
         </View>
       </Animated.View>
       <PanGestureHandler onGestureEvent={panGesture}>
@@ -139,6 +139,7 @@ export default TodoItem;
 const styles = StyleSheet.create({
   card: {
     marginBottom: MARGIN_BOTTOM,
+    elevation: 1,
   },
   cardContainer: {
     height: ITEM_HEIGHT,

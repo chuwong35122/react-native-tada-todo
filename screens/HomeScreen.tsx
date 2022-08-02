@@ -64,12 +64,13 @@ const HomeScreen = () => {
         </Animated.View>
       </ScrollView>
       <Fab
-        backgroundColor="black"
+        backgroundColor="white"
         size="lg"
-        icon={<AntDesign name="plus" size={24} color="white" />}
+        icon={<AntDesign name="plus" size={24} color="black" />}
         renderInPortal={false}
         onPress={() => navigation.push("CreateTodo")}
         position="absolute"
+        style={{ elevation: 3 }}
       />
 
       <Button onPress={clearStorage} position="absolute" bottom="0">
