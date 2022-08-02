@@ -34,8 +34,8 @@ const TodoColorPicker = ({
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
           />
-        </HStack>
-        <HStack justifyContent="space-evenly">
+          {/* </HStack> */}
+          {/* <HStack justifyContent="space-evenly"> */}
           <ColorPallette
             color="Rose"
             selectedColor={selectedColor}

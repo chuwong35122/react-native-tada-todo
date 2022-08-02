@@ -64,11 +64,18 @@ const CreateTodoScreen = () => {
     navigation.goBack();
   }
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{ backgroundColor: "#fff", paddingTop: 20, paddingHorizontal: 4 }}
+    >
       <VStack space={4} mx="2">
-        <Text fontSize="xl" fontFamily="Roboto_500Medium">
-          Create a To-Do
-        </Text>
+        <View>
+          <Text fontSize="2xl" fontFamily="Roboto_500Medium" lineHeight="xs">
+            Create a To-Do
+          </Text>
+          <Text fontFamily="Roboto_300Light">
+            You can create a To-Do item here!
+          </Text>
+        </View>
 
         <View>
           <Text fontFamily="Roboto_400Regular">Set a title</Text>
@@ -78,6 +85,12 @@ const CreateTodoScreen = () => {
             value={input}
             autoFocus
             onChangeText={(val) => handleChangeInput(val)}
+            placeholderTextColor="gray.500"
+            _focus={{
+              borderColor: "#000",
+              borderWidth: 2,
+              backgroundColor: "coolGray.200",
+            }}
           />
         </View>
         <View>
@@ -87,7 +100,7 @@ const CreateTodoScreen = () => {
             accessibilityLabel="Choose To-Do priority"
             placeholder="Priority"
             _selectedItem={{
-              bg: "blue.100",
+              bg: "gray.200",
               borderRadius: "lg",
               endIcon: <Feather name="check" size={24} color="black" />,
             }}
@@ -107,11 +120,31 @@ const CreateTodoScreen = () => {
             setSelectedColor={setSelectedColor}
           />
         </View>
-        <Button size="lg" bgColor="blue.500" onPress={handleSubmit}>
+        <Button
+          size="lg"
+          bgColor="black"
+          color="white"
+          mt="10"
+          onPress={handleSubmit}
+        >
           CREATE!
         </Button>
-        <Button size="lg" variant="outline" onPress={() => navigation.goBack()}>
-          Back
+        <Button
+          size="lg"
+          variant="outline"
+          _text={{
+            color: "black",
+          }}
+          _pressed={{
+            backgroundColor: "gray.200",
+            borderColor: "gray.300",
+          }}
+          _focus={{
+            backgroundColor: "gray.200",
+          }}
+          onPress={() => navigation.goBack()}
+        >
+          BACK
         </Button>
       </VStack>
     </SafeAreaView>
