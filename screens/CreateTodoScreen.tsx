@@ -69,7 +69,7 @@ const CreateTodoScreen = () => {
     >
       <VStack space={4} mx="2">
         <View>
-          <Text fontSize="2xl" fontFamily="Roboto_500Medium" lineHeight="xs">
+          <Text fontSize="3xl" fontFamily="Roboto_500Medium" lineHeight="xs">
             Create a To-Do
           </Text>
           <Text fontFamily="Roboto_300Light">

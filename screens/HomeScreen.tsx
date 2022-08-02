@@ -5,7 +5,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationScreenTypes } from "./navigation.types";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
-import { clearStorage } from "../utils/todo";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PriorityTodoList from "../components/Todos/PriorityTodoList";
 import Animated, { ZoomInLeft, ZoomInRight } from "react-native-reanimated";
@@ -27,7 +26,7 @@ const HomeScreen = () => {
           px="4"
           mb="4"
         >
-          <Text fontSize="2xl" style={{ fontFamily: "Roboto_500Medium" }}>
+          <Text fontSize="3xl" style={{ fontFamily: "Roboto_500Medium" }}>
             My To-Do List
           </Text>
           <Animated.View>
@@ -87,10 +86,6 @@ const HomeScreen = () => {
         position="absolute"
         style={{ elevation: 3 }}
       />
-
-      <Button onPress={clearStorage} position="absolute" bottom="0">
-        Clear
-      </Button>
     </SafeAreaView>
   );
 };

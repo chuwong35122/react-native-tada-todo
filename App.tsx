@@ -65,7 +65,11 @@ export default function App() {
                   }}
                 />
                 <Stack.Screen name="ViewTodo" component={ViewTodoScreen} />
-                <Stack.Screen name="Setting" component={SettingScreen} />
+                <Stack.Screen
+                  name="Setting"
+                  component={SettingScreen}
+                  options={{ headerShown: false }}
+                />
               </Stack.Navigator>
             </SafeAreaProvider>
           </TodoContextProvider>
