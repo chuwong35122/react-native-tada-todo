@@ -61,7 +61,7 @@ const PriorityTodoList = ({
       {todoList.length > 0 ? (
         <View pl="1">
           {todoList.map((item, key) => (
-            <View>
+            <View key={key}>
               <TodoItem
                 data={item}
                 onRemoveTodo={onRemoveTodo}
