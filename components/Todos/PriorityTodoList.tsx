@@ -5,13 +5,19 @@ import { PriorityTodoKey, TodoItemType } from "../../interfaces/todo.interface";
 import { TodoContext } from "../../contexts/TodoContext";
 import TodoItem from "./TodoItem";
 import { removeTodoItem } from "../../utils/todo";
+import { PanGestureHandlerProps } from "react-native-gesture-handler";
 
-type PriorityTodoListProps = {
+interface PriorityTodoListProps
+  extends Pick<PanGestureHandlerProps, "simultaneousHandlers"> {
   priority: PriorityTodoKey;
   title: string;
-};
+}
 
-const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
+const PriorityTodoList = ({
+  priority,
+  title,
+  simultaneousHandlers,
+}: PriorityTodoListProps) => {
   const { highTodoList, medTodoList, lowTodoList, updateTodoList } =
     useContext(TodoContext);
   const [todoList, setTodoList] = useState<TodoItemType[]>([]);
@@ -58,7 +64,12 @@ const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
         <View pl="1">
           {todoList.map((item, key) => (
             <View>
-              <TodoItem data={item} onRemoveTodo={onRemoveTodo} key={item.id} />
+              <TodoItem
+                data={item}
+                onRemoveTodo={onRemoveTodo}
+                key={item.id}
+                simultaneousHandlers={simultaneousHandlers}
+              />
               {key !== todoList.length - 1 && (
                 <View w="full" px="3">
                   <View w="full" bgColor="light.200" style={{ height: 1 }} />

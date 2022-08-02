@@ -1,5 +1,6 @@
-import React from "react";
-import { Fab, Text, Button, ScrollView, View, IconButton } from "native-base";
+import React, { useRef } from "react";
+import { Fab, Text, Button, View, IconButton } from "native-base";
+import { ScrollView } from "react-native-gesture-handler";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationScreenTypes } from "./navigation.types";
@@ -13,9 +14,11 @@ const HomeScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
+  const scrollViewRef = useRef(null);
+
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 14 }}>
-      <ScrollView>
+      <ScrollView ref={scrollViewRef}>
         <View
           w="full"
           flexDir="row"
@@ -50,17 +53,29 @@ const HomeScreen = () => {
         <Animated.View
           entering={ZoomInLeft.delay(300).springify().stiffness(60)}
         >
-          <PriorityTodoList priority="@high" title="HIGHEST PRIORITY" />
+          <PriorityTodoList
+            priority="@high"
+            title="HIGHEST PRIORITY"
+            simultaneousHandlers={scrollViewRef}
+          />
         </Animated.View>
         <Animated.View
           entering={ZoomInRight.delay(550).springify().stiffness(60)}
         >
-          <PriorityTodoList priority="@med" title="MEDIUM PRIORITY" />
+          <PriorityTodoList
+            priority="@med"
+            title="MEDIUM PRIORITY"
+            simultaneousHandlers={scrollViewRef}
+          />
         </Animated.View>
         <Animated.View
           entering={ZoomInLeft.delay(750).springify().stiffness(60)}
         >
-          <PriorityTodoList priority="@low" title="LOWEST PRIORITY" />
+          <PriorityTodoList
+            priority="@low"
+            title="LOWEST PRIORITY"
+            simultaneousHandlers={scrollViewRef}
+          />
         </Animated.View>
       </ScrollView>
       <Fab

@@ -13,6 +13,7 @@ import moment from "moment";
 import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
+  PanGestureHandlerProps,
 } from "react-native-gesture-handler";
 import Animated, {
   runOnJS,
@@ -23,15 +24,20 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
-type TodoItemProps = {
+interface TodoItemProps
+  extends Pick<PanGestureHandlerProps, "simultaneousHandlers"> {
   data: TodoItemType;
   onRemoveTodo?: (data: TodoItemType) => Promise<void>;
-};
+}
 
 const ITEM_HEIGHT = 72;
 const MARGIN_BOTTOM = 3;
 
-const TodoItem = ({ data, onRemoveTodo }: TodoItemProps) => {
+const TodoItem = ({
+  data,
+  onRemoveTodo,
+  simultaneousHandlers,
+}: TodoItemProps) => {
   const { width } = useWindowDimensions();
   const { setHighTodoList, setMedTodoList, setLowTodoList } =
     useContext(TodoContext);
@@ -105,7 +111,10 @@ const TodoItem = ({ data, onRemoveTodo }: TodoItemProps) => {
           <Feather name="trash-2" size={26} color="black" />
         </View>
       </Animated.View>
-      <PanGestureHandler onGestureEvent={panGesture}>
+      <PanGestureHandler
+        onGestureEvent={panGesture}
+        simultaneousHandlers={simultaneousHandlers}
+      >
         <Animated.View style={[styles.cardContainer, reanimatedPanStyle]}>
           <Pressable
             flexDir="row"
