@@ -18,6 +18,7 @@ import HomeScreen from "./screens/HomeScreen";
 import CreateTodoScreen from "./screens/CreateTodoScreen";
 import ViewTodoScreen from "./screens/ViewTodoScreen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import SettingScreen from "./screens/SettingScreen";
 
 const Stack = createNativeStackNavigator<StackNavigationScreenTypes>();
 const themes = {
@@ -64,6 +65,7 @@ export default function App() {
                   }}
                 />
                 <Stack.Screen name="ViewTodo" component={ViewTodoScreen} />
+                <Stack.Screen name="Setting" component={SettingScreen} />
               </Stack.Navigator>
             </SafeAreaProvider>
           </TodoContextProvider>

@@ -1,9 +1,9 @@
 import React from "react";
-import { Fab, Text, Button, ScrollView } from "native-base";
+import { Fab, Text, Button, ScrollView, View, IconButton } from "native-base";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationScreenTypes } from "./navigation.types";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { clearStorage } from "../utils/todo";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PriorityTodoList from "../components/Todos/PriorityTodoList";
@@ -14,11 +14,39 @@ const HomeScreen = () => {
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, paddingTop: 14 }}>
       <ScrollView>
-        <Text fontSize="20" ml="2" style={{ fontFamily: "Roboto_500Medium" }}>
-          My Ta-Da To-Do
-        </Text>
+        <View
+          w="full"
+          flexDir="row"
+          justifyContent="space-between"
+          alignItems="center"
+          px="4"
+          mb="4"
+        >
+          <Text fontSize="2xl" style={{ fontFamily: "Roboto_500Medium" }}>
+            My To-Do List
+          </Text>
+          <Animated.View>
+            <IconButton
+              variant="outline"
+              _icon={{
+                as: AntDesign,
+                name: "setting",
+                size: "lg",
+                color: "white",
+              }}
+              p="1"
+              rounded="full"
+              bgColor="black"
+              borderColor="black"
+              _pressed={{
+                backgroundColor: "gray.700",
+              }}
+              onPress={() => navigation.navigate("Setting")}
+            />
+          </Animated.View>
+        </View>
         <Animated.View
           entering={ZoomInLeft.delay(300).springify().stiffness(60)}
         >
@@ -36,7 +64,7 @@ const HomeScreen = () => {
         </Animated.View>
       </ScrollView>
       <Fab
-        backgroundColor="blue.500"
+        backgroundColor="black"
         size="lg"
         icon={<AntDesign name="plus" size={24} color="white" />}
         renderInPortal={false}
