@@ -1,19 +1,22 @@
-import React, { useRef } from "react";
-import { Fab, Text, Button, View, IconButton } from "native-base";
+import React, { useContext, useRef } from "react";
+import { Fab, Text, View, IconButton } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationScreenTypes } from "./navigation.types";
-import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PriorityTodoList from "../components/Todos/PriorityTodoList";
 import Animated, { ZoomInLeft, ZoomInRight } from "react-native-reanimated";
+import { TodoContext } from "./../contexts/TodoContext";
+import EmptyTodoView from "../components/Todos/EmptyTodoView";
 
 const HomeScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
   const scrollViewRef = useRef(null);
+  const { highTodoList, medTodoList, lowTodoList } = useContext(TodoContext);
 
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 14 }}>
@@ -29,7 +32,7 @@ const HomeScreen = () => {
           <Text fontSize="3xl" style={{ fontFamily: "Roboto_500Medium" }}>
             My To-Do List
           </Text>
-          <Animated.View>
+          <View>
             <IconButton
               variant="outline"
               _icon={{
@@ -47,35 +50,43 @@ const HomeScreen = () => {
               }}
               onPress={() => navigation.navigate("Setting")}
             />
-          </Animated.View>
+          </View>
         </View>
-        <Animated.View
-          entering={ZoomInLeft.delay(300).springify().stiffness(60)}
-        >
-          <PriorityTodoList
-            priority="@high"
-            title="HIGHEST PRIORITY"
-            simultaneousHandlers={scrollViewRef}
-          />
-        </Animated.View>
-        <Animated.View
-          entering={ZoomInRight.delay(550).springify().stiffness(60)}
-        >
-          <PriorityTodoList
-            priority="@med"
-            title="MEDIUM PRIORITY"
-            simultaneousHandlers={scrollViewRef}
-          />
-        </Animated.View>
-        <Animated.View
-          entering={ZoomInLeft.delay(750).springify().stiffness(60)}
-        >
-          <PriorityTodoList
-            priority="@low"
-            title="LOWEST PRIORITY"
-            simultaneousHandlers={scrollViewRef}
-          />
-        </Animated.View>
+        {highTodoList.length === 0 &&
+        medTodoList.length === 0 &&
+        lowTodoList.length === 0 ? (
+          <EmptyTodoView />
+        ) : (
+          <View>
+            <Animated.View
+              entering={ZoomInLeft.delay(300).springify().stiffness(60)}
+            >
+              <PriorityTodoList
+                priority="@high"
+                title="HIGHEST PRIORITY"
+                simultaneousHandlers={scrollViewRef}
+              />
+            </Animated.View>
+            <Animated.View
+              entering={ZoomInRight.delay(550).springify().stiffness(60)}
+            >
+              <PriorityTodoList
+                priority="@med"
+                title="MEDIUM PRIORITY"
+                simultaneousHandlers={scrollViewRef}
+              />
+            </Animated.View>
+            <Animated.View
+              entering={ZoomInLeft.delay(750).springify().stiffness(60)}
+            >
+              <PriorityTodoList
+                priority="@low"
+                title="LOWEST PRIORITY"
+                simultaneousHandlers={scrollViewRef}
+              />
+            </Animated.View>
+          </View>
+        )}
       </ScrollView>
       <Fab
         backgroundColor="white"
