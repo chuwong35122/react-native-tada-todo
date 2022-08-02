@@ -5,7 +5,7 @@ import React, {
   SetStateAction,
   useEffect,
 } from "react";
-import { TodoColorName, TodoItemType } from "../interfaces/todo.interface";
+import { PriorityTodoKey, TodoItemType } from "../interfaces/todo.interface";
 import { getAllTodo } from "../utils/todo";
 
 interface TodoContextProps {
@@ -15,8 +15,7 @@ interface TodoContextProps {
   setMedTodoList: Dispatch<SetStateAction<TodoItemType[]>>;
   lowTodoList: TodoItemType[];
   setLowTodoList: Dispatch<SetStateAction<TodoItemType[]>>;
-  isTodoUpdate: boolean;
-  setIsTodoUpdate: Dispatch<SetStateAction<boolean>>;
+  updateTodoList: (key: PriorityTodoKey) => Promise<void>;
 }
 
 export const TodoContext = createContext({} as TodoContextProps);
@@ -24,25 +23,29 @@ const TodoContextProvider = ({ ...props }) => {
   const [highTodoList, setHighTodoList] = useState<TodoItemType[]>([]);
   const [medTodoList, setMedTodoList] = useState<TodoItemType[]>([]);
   const [lowTodoList, setLowTodoList] = useState<TodoItemType[]>([]);
-  const [isTodoUpdate, setIsTodoUpdate] = useState(true); // used to re-render todoList
 
+  async function updateTodoList(key: PriorityTodoKey) {
+    if (key === "@high") {
+      const high = await getAllTodo("@high");
+      setHighTodoList(high);
+    } else if (key === "@med") {
+      const med = await getAllTodo("@med");
+      setMedTodoList(med);
+    } else if (key === "@low") {
+      const low = await getAllTodo("@low");
+      setLowTodoList(low);
+    }
+  }
+  // useEffect that get all data once renders
   useEffect(() => {
     async function fn() {
-      const high = await getAllTodo("@high");
-      const med = await getAllTodo("@med");
-      const low = await getAllTodo("@low");
-
-      setHighTodoList(high);
-      setMedTodoList(med);
-      setLowTodoList(low);
-
-      return () => {
-        null;
-      };
+      await updateTodoList("@high");
+      await updateTodoList("@med");
+      await updateTodoList("@low");
     }
 
     fn();
-  }, [isTodoUpdate]);
+  }, []);
 
   const values: TodoContextProps = {
     lowTodoList,
@@ -51,8 +54,7 @@ const TodoContextProvider = ({ ...props }) => {
     setMedTodoList,
     highTodoList,
     setHighTodoList,
-    isTodoUpdate,
-    setIsTodoUpdate,
+    updateTodoList,
   };
 
   return <TodoContext.Provider value={values} {...props} />;

@@ -33,13 +33,16 @@ export async function setTodoStatus(id: string, key: PriorityTodoKey) {
   const _status = todoList[index].status;
   todoList[index].status = !_status;
   await saveTodo(todoList, key);
+
+  return todoList;
 }
 
 export async function removeTodoItem(id: string, key: PriorityTodoKey) {
   const todoList = await getAllTodo(key);
   const filtered = todoList.filter((todo) => todo.id !== id);
-  console.log(filtered);
   await saveTodo(filtered, key);
+
+  return filtered;
 }
 
 export async function clearStorage() {

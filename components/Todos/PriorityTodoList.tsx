@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Text, View } from "native-base";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useState, useEffect } from "react";
 import { PriorityTodoKey, TodoItemType } from "../../interfaces/todo.interface";
 import { TodoContext } from "../../contexts/TodoContext";
 import TodoItem from "./TodoItem";
@@ -12,18 +12,13 @@ type PriorityTodoListProps = {
 };
 
 const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
-  const {
-    highTodoList,
-    medTodoList,
-    lowTodoList,
-    isTodoUpdate,
-    setIsTodoUpdate,
-  } = useContext(TodoContext);
+  const { highTodoList, medTodoList, lowTodoList, updateTodoList } =
+    useContext(TodoContext);
   const [todoList, setTodoList] = useState<TodoItemType[]>([]);
 
   const onRemoveTodo = useCallback(async (data: TodoItemType) => {
     await removeTodoItem(data.id, data.priority);
-    setIsTodoUpdate((prev) => !prev);
+    updateTodoList(data.priority);
   }, []);
 
   useEffect(() => {
@@ -34,7 +29,7 @@ const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
     } else if (priority === "@low") {
       setTodoList(lowTodoList);
     }
-  }, [isTodoUpdate, highTodoList, medTodoList, lowTodoList]);
+  }, [highTodoList, medTodoList, lowTodoList]);
 
   return (
     <View
@@ -58,11 +53,9 @@ const PriorityTodoList = ({ priority, title }: PriorityTodoListProps) => {
       </View>
       {todoList.length > 0 ? (
         <View pl="1">
-          {todoList.map((item, key) => {
-            return (
-              <TodoItem data={item} onRemoveTodo={onRemoveTodo} key={key} />
-            );
-          })}
+          {todoList.map((item) => (
+            <TodoItem data={item} onRemoveTodo={onRemoveTodo} key={item.id} />
+          ))}
         </View>
       ) : (
         <View

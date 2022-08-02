@@ -25,7 +25,8 @@ const CreateTodoScreen = () => {
   const [titlePlaceholder, setTitlePlaceholder] = useState("");
   const [priority, setPriority] = useState<PriorityTodoKey>("@high");
   const [selectedColor, setSelectedColor] = useState<TodoColorName>("Blue");
-  const { setIsTodoUpdate } = useContext(TodoContext);
+  const { setHighTodoList, setMedTodoList, setLowTodoList } =
+    useContext(TodoContext);
 
   // random funny placeholder
   useEffect(() => {
@@ -52,8 +53,14 @@ const CreateTodoScreen = () => {
       color: selectedColor,
     };
 
-    await addTodo(newTodo, priority);
-    setIsTodoUpdate((prev) => !prev);
+    const todoList = await addTodo(newTodo, priority);
+    if (priority === "@high") {
+      setHighTodoList(todoList);
+    } else if (priority === "@med") {
+      setMedTodoList(todoList);
+    } else if (priority === "@low") {
+      setLowTodoList(todoList);
+    }
     navigation.goBack();
   }
   return (
