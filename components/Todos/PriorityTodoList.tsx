@@ -49,16 +49,14 @@ const PriorityTodoList = ({
         flexDir="row"
         justifyContent="space-between"
         alignItems="center"
-        bgColor="black"
+        bgColor="coolGray.200"
         borderTopRadius="lg"
         p="3"
       >
-        <Text fontSize="md" color="white" fontFamily="Roboto_500Medium">
+        <Text fontSize="md" fontFamily="Roboto_500Medium">
           {title}
         </Text>
-        <Text fontFamily="Roboto_300Light" color="white">
-          {todoList.length} items
-        </Text>
+        <Text fontFamily="Roboto_300Light">{todoList.length} items</Text>
       </View>
       {todoList.length > 0 ? (
         <View pl="1">
@@ -82,7 +80,7 @@ const PriorityTodoList = ({
         <View
           alignItems="center"
           justifyContent="center"
-          borderLeftColor="gray.200"
+          borderLeftColor="coolGray.200"
           borderLeftWidth="4"
           m="2"
         >
