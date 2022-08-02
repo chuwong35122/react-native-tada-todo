@@ -120,13 +120,7 @@ const CreateTodoScreen = () => {
             setSelectedColor={setSelectedColor}
           />
         </View>
-        <Button
-          size="lg"
-          bgColor="black"
-          color="white"
-          mt="10"
-          onPress={handleSubmit}
-        >
+        <Button size="lg" bgColor="black" color="white" onPress={handleSubmit}>
           CREATE!
         </Button>
         <Button

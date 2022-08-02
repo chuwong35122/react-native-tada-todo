@@ -15,46 +15,41 @@ const TodoColorPicker = ({
   // Parse selected color from home screen to create todo screen
 
   return (
-    <View>
-      <VStack space="2" my="4">
-        <HStack justifyContent="space-evenly">
-          <ColorPallette
-            color="Blue"
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
+    <VStack space="2" my="4">
+      <HStack justifyContent="space-evenly">
+        <ColorPallette
+          color="Blue"
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+        />
+        <ColorPallette
+          color="Green"
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+        />
+        <ColorPallette
+          color="Amber"
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+        />
+        <ColorPallette
+          color="Rose"
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+        />
+        <ColorPallette
+          color="Violet"
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+        />
 
-          <ColorPallette
-            color="Green"
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
-          <ColorPallette
-            color="Amber"
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
-          {/* </HStack> */}
-          {/* <HStack justifyContent="space-evenly"> */}
-          <ColorPallette
-            color="Rose"
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
-          <ColorPallette
-            color="Violet"
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
-
-          <ColorPallette
-            color="Black"
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
-        </HStack>
-      </VStack>
-    </View>
+        <ColorPallette
+          color="Black"
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+        />
+      </HStack>
+    </VStack>
   );
 };
 
