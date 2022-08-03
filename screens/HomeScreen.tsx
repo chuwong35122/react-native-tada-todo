@@ -7,7 +7,11 @@ import { StackNavigationScreenTypes } from "./navigation.types";
 import { AntDesign } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PriorityTodoList from "../components/Todos/PriorityTodoList";
-import Animated, { ZoomInLeft, ZoomInRight } from "react-native-reanimated";
+import Animated, {
+  ZoomInLeft,
+  ZoomInRight,
+  ZoomIn,
+} from "react-native-reanimated";
 import { TodoContext } from "./../contexts/TodoContext";
 import EmptyTodoView from "../components/Todos/EmptyTodoView";
 
@@ -58,9 +62,7 @@ const HomeScreen = () => {
           <EmptyTodoView />
         ) : (
           <View>
-            <Animated.View
-              entering={ZoomInLeft.delay(300).springify().stiffness(60)}
-            >
+            <Animated.View entering={ZoomIn.springify().stiffness(60)}>
               <PriorityTodoList
                 priority="@high"
                 title="HIGHEST PRIORITY"
@@ -68,7 +70,7 @@ const HomeScreen = () => {
               />
             </Animated.View>
             <Animated.View
-              entering={ZoomInRight.delay(550).springify().stiffness(60)}
+              entering={ZoomIn.springify().delay(250).stiffness(60)}
             >
               <PriorityTodoList
                 priority="@med"
@@ -77,7 +79,7 @@ const HomeScreen = () => {
               />
             </Animated.View>
             <Animated.View
-              entering={ZoomInLeft.delay(750).springify().stiffness(60)}
+              entering={ZoomIn.springify().delay(500).stiffness(60)}
             >
               <PriorityTodoList
                 priority="@low"
