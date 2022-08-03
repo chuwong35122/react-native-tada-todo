@@ -20,9 +20,7 @@ import ViewTodoScreen from "./screens/ViewTodoScreen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingScreen from "./screens/SettingScreen";
 
-LogBox.ignoreLogs([
-  "ViewPropTypes will be removed from React Native. Migrate to ViewPropTypes exported from 'deprecated-react-native-prop-types'.",
-]);
+LogBox.ignoreLogs(["ViewPropTypes will be removed from React Native."]);
 
 const Stack = createNativeStackNavigator<StackNavigationScreenTypes>();
 const themes = {
