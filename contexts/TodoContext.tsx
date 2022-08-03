@@ -38,13 +38,20 @@ const TodoContextProvider = ({ ...props }) => {
   }
   // useEffect that get all data once renders
   useEffect(() => {
+    let canceled = false;
     async function fn() {
-      await updateTodoList("@high");
-      await updateTodoList("@med");
-      await updateTodoList("@low");
+      if (!canceled) {
+        await updateTodoList("@high");
+        await updateTodoList("@med");
+        await updateTodoList("@low");
+      }
     }
 
     fn();
+
+    return () => {
+      canceled = true;
+    };
   }, []);
 
   const values: TodoContextProps = {
