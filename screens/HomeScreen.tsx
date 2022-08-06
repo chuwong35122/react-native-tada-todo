@@ -30,7 +30,7 @@ const HomeScreen = () => {
           px="4"
           mb="4"
         >
-          <Text fontSize="3xl" style={{ fontFamily: "Roboto_500Medium" }}>
+          <Text fontSize="3xl" fontFamily="Roboto_500Medium" color="black">
             My To-Do List
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate("Setting")}>

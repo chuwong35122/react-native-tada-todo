@@ -34,7 +34,7 @@ export async function setTodoStatus(id: string, key: PriorityTodoKey) {
   todoList[index].status = !_status;
   await saveTodo(todoList, key);
 
-  return todoList;
+  return todoList[index];
 }
 
 export async function removeTodoItem(id: string, key: PriorityTodoKey) {

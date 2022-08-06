@@ -25,6 +25,7 @@ interface TodoItemProps
   extends Pick<PanGestureHandlerProps, "simultaneousHandlers"> {
   data: TodoItemType;
   onRemoveTodo?: (data: TodoItemType) => Promise<void>;
+  playSfx: () => Promise<void>;
 }
 
 const ITEM_HEIGHT = 72;
@@ -34,6 +35,7 @@ const TodoItem = ({
   data,
   onRemoveTodo,
   simultaneousHandlers,
+  playSfx,
 }: TodoItemProps) => {
   const { width } = useWindowDimensions();
   const { updateTodoList } = useContext(TodoContext);
@@ -41,8 +43,11 @@ const TodoItem = ({
   const DELETE_THRESHOLD = -(width * 0.35);
 
   async function handlePress() {
-    await setTodoStatus(data.id, data.priority);
+    const newStatus = await setTodoStatus(data.id, data.priority);
     await updateTodoList();
+    if (newStatus?.status === true) {
+      await playSfx();
+    }
   }
 
   const translateX = useSharedValue(0);
