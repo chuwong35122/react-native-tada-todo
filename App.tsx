@@ -16,7 +16,6 @@ import { View, Text, LogBox } from "react-native";
 import { StackNavigationScreenTypes } from "./screens/navigation.types";
 import HomeScreen from "./screens/HomeScreen";
 import CreateTodoScreen from "./screens/CreateTodoScreen";
-import ViewTodoScreen from "./screens/ViewTodoScreen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingScreen from "./screens/SettingScreen";
 
