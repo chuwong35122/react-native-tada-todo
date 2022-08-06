@@ -66,7 +66,6 @@ export default function App() {
                     headerShown: false,
                   }}
                 />
-                <Stack.Screen name="ViewTodo" component={ViewTodoScreen} />
                 <Stack.Screen
                   name="Setting"
                   component={SettingScreen}

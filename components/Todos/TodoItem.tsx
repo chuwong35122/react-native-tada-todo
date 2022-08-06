@@ -4,9 +4,6 @@ import { TodoItemType } from "../../interfaces/todo.interface";
 import React, { useContext } from "react";
 import CheckBox from "./CheckBox";
 import { Feather } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackNavigationScreenTypes } from "../../screens/navigation.types";
 import { TodoContext } from "../../contexts/TodoContext";
 import { setTodoStatus } from "../../utils/todo";
 import moment from "moment";
@@ -40,8 +37,6 @@ const TodoItem = ({
 }: TodoItemProps) => {
   const { width } = useWindowDimensions();
   const { updateTodoList } = useContext(TodoContext);
-  const navigation =
-    useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
   const DELETE_THRESHOLD = -(width * 0.35);
 
@@ -115,7 +110,7 @@ const TodoItem = ({
             onPress={handlePress}
             py="1.5"
           >
-            <CheckBox isChecked={data.status} color={data.color} />
+            <CheckBox isChecked={data.status} priority={data.priority} />
             <View width="84%">
               <Text
                 fontSize="20"
