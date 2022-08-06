@@ -20,14 +20,14 @@ import ViewTodoScreen from "./screens/ViewTodoScreen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingScreen from "./screens/SettingScreen";
 
-LogBox.ignoreLogs(["ViewPropTypes will be removed from React Native."]);
+LogBox.ignoreLogs(["", "We can not support a function callback."]);
 
 const Stack = createNativeStackNavigator<StackNavigationScreenTypes>();
 const themes = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: "#f7f7f7",
+    background: "#fff",
   },
 };
 

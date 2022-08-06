@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, Input, Button, VStack, Text, Select } from "native-base";
+import { View, Input, Button, VStack, Text, Switch, HStack } from "native-base";
 import { v4 as uuidv4 } from "uuid";
 import TodoColorPicker from "../components/Todos/TodoColorPicker";
 import {
@@ -23,10 +23,9 @@ const CreateTodoScreen = () => {
 
   const [input, setInput] = useState("");
   const [titlePlaceholder, setTitlePlaceholder] = useState("");
-  const [priority, setPriority] = useState<PriorityTodoKey>("@high");
+  const [priority, setPriority] = useState(false);
   const [selectedColor, setSelectedColor] = useState<TodoColorName>("Blue");
-  const { setHighTodoList, setMedTodoList, setLowTodoList } =
-    useContext(TodoContext);
+  const { todoList, updateTodoList } = useContext(TodoContext);
 
   // random funny placeholder
   useEffect(() => {
@@ -38,29 +37,28 @@ const CreateTodoScreen = () => {
     setInput(val);
   }
 
+  function handleChangeSwitch(val: boolean) {
+    setPriority(val);
+  }
+
   async function handleSubmit() {
     if (!input) {
       return;
     }
 
     const id = uuidv4();
+    const priorityKey = priority ? "@high" : "@med";
     const newTodo: TodoItemType = {
       id,
-      priority,
+      priority: priorityKey,
       todo: input,
       date: new Date(),
       status: false,
       color: selectedColor,
     };
 
-    const todoList = await addTodo(newTodo, priority);
-    if (priority === "@high") {
-      setHighTodoList(todoList);
-    } else if (priority === "@med") {
-      setMedTodoList(todoList);
-    } else if (priority === "@low") {
-      setLowTodoList(todoList);
-    }
+    await addTodo(newTodo, priorityKey);
+    await updateTodoList();
     navigation.goBack();
   }
   return (
@@ -78,7 +76,7 @@ const CreateTodoScreen = () => {
         </View>
 
         <View>
-          <Text fontFamily="Roboto_400Regular">Set a title</Text>
+          <Text fontFamily="Roboto_500Medium">Set a title</Text>
           <Input
             size="lg"
             placeholder={titlePlaceholder}
@@ -88,30 +86,29 @@ const CreateTodoScreen = () => {
             placeholderTextColor="gray.500"
             _focus={{
               borderColor: "#000",
-              borderWidth: 2,
-              backgroundColor: "coolGray.200",
+              borderWidth: 1,
+              backgroundColor: "coolGray.100",
             }}
           />
         </View>
-        <View>
-          <Text fontFamily="Roboto_400Regular">Set priority</Text>
-          <Select
-            selectedValue={priority}
-            accessibilityLabel="Choose To-Do priority"
-            placeholder="Priority"
-            _selectedItem={{
-              bg: "gray.200",
-              borderRadius: "lg",
-              endIcon: <Feather name="check" size={24} color="black" />,
-            }}
-            fontFamily="Roboto_400Regular"
-            fontSize="lg"
-            onValueChange={(value) => setPriority(value as PriorityTodoKey)}
-          >
-            <Select.Item label="Highest" value="@high" />
-            <Select.Item label="Medium" value="@med" />
-            <Select.Item label="Lowest" value="@low" />
-          </Select>
+        <View flexDir="row" alignItems="center" justifyContent="space-between">
+          <Text fontFamily="Roboto_500Medium">Set priority</Text>
+          <HStack alignItems="center" space="2">
+            <Text fontSize="sm" color="gray.500">
+              Low
+            </Text>
+            <Switch
+              size="lg"
+              offTrackColor="gray.100"
+              onTrackColor="violet.200"
+              onThumbColor="violet.500"
+              offThumbColor="gray.100"
+              // isChecked={priority}
+              onValueChange={(val) => handleChangeSwitch(val)}
+              value={priority}
+            />
+            <Text color="gray.500">High</Text>
+          </HStack>
         </View>
         <View>
           <Text fontFamily="Roboto_400Regular">Add a color</Text>

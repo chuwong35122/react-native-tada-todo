@@ -19,7 +19,7 @@ export type TodoColorName =
   | "Violet"
   | "Black";
 
-export type PriorityTodoKey = "@low" | "@med" | "@high";
+export type PriorityTodoKey = "@med" | "@high";
 export interface TodoItemType {
   id: string;
   todo: string;

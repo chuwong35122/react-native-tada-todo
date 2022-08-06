@@ -18,8 +18,9 @@ const CheckBox = ({ isChecked, color }: CheckBoxProps) => {
       bgColor="gray.100"
       alignItems="center"
       justifyContent="center"
-      borderColor={isChecked ? checkedColors[color] : colors[color]}
-      borderWidth={4}
+      // borderColor={isChecked ? checkedColors[color] : colors[color]}
+      borderColor="black"
+      borderWidth={2}
       mr={4}
     >
       {isChecked ? <Feather name="check" size={20} color="#4b5563" /> : <></>}

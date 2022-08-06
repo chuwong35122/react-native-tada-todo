@@ -39,22 +39,15 @@ const TodoItem = ({
   simultaneousHandlers,
 }: TodoItemProps) => {
   const { width } = useWindowDimensions();
-  const { setHighTodoList, setMedTodoList, setLowTodoList } =
-    useContext(TodoContext);
+  const { updateTodoList } = useContext(TodoContext);
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
   const DELETE_THRESHOLD = -(width * 0.35);
 
   async function handlePress() {
-    const todoList = await setTodoStatus(data.id, data.priority);
-    if (data.priority === "@high" && todoList) {
-      setHighTodoList(todoList);
-    } else if (data.priority === "@med" && todoList) {
-      setMedTodoList(todoList);
-    } else if (data.priority === "@low" && todoList) {
-      setLowTodoList(todoList);
-    }
+    await setTodoStatus(data.id, data.priority);
+    await updateTodoList();
   }
 
   const translateX = useSharedValue(0);

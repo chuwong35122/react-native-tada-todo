@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import { Fab, Text, View, IconButton } from "native-base";
+import { Fab, Text, View } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -7,20 +7,17 @@ import { StackNavigationScreenTypes } from "./navigation.types";
 import { AntDesign } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PriorityTodoList from "../components/Todos/PriorityTodoList";
-import Animated, {
-  ZoomInLeft,
-  ZoomInRight,
-  ZoomIn,
-} from "react-native-reanimated";
+import Animated, { ZoomIn } from "react-native-reanimated";
 import { TodoContext } from "./../contexts/TodoContext";
 import EmptyTodoView from "../components/Todos/EmptyTodoView";
+import { TouchableOpacity } from "react-native";
 
 const HomeScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
   const scrollViewRef = useRef(null);
-  const { highTodoList, medTodoList, lowTodoList } = useContext(TodoContext);
+  const { todoList } = useContext(TodoContext);
 
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 14 }}>
@@ -36,56 +33,16 @@ const HomeScreen = () => {
           <Text fontSize="3xl" style={{ fontFamily: "Roboto_500Medium" }}>
             My To-Do List
           </Text>
-          <View>
-            <IconButton
-              variant="outline"
-              _icon={{
-                as: AntDesign,
-                name: "setting",
-                size: "lg",
-                color: "white",
-              }}
-              p="1"
-              rounded="full"
-              bgColor="black"
-              borderColor="black"
-              _pressed={{
-                backgroundColor: "gray.700",
-              }}
-              onPress={() => navigation.navigate("Setting")}
-            />
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate("Setting")}>
+            <AntDesign name="setting" size={26} color="black" />
+          </TouchableOpacity>
         </View>
-        {highTodoList.length === 0 &&
-        medTodoList.length === 0 &&
-        lowTodoList.length === 0 ? (
+        {todoList.length === 0 ? (
           <EmptyTodoView />
         ) : (
           <View>
             <Animated.View entering={ZoomIn.springify().stiffness(60)}>
-              <PriorityTodoList
-                priority="@high"
-                title="HIGHEST PRIORITY"
-                simultaneousHandlers={scrollViewRef}
-              />
-            </Animated.View>
-            <Animated.View
-              entering={ZoomIn.springify().delay(250).stiffness(60)}
-            >
-              <PriorityTodoList
-                priority="@med"
-                title="MEDIUM PRIORITY"
-                simultaneousHandlers={scrollViewRef}
-              />
-            </Animated.View>
-            <Animated.View
-              entering={ZoomIn.springify().delay(500).stiffness(60)}
-            >
-              <PriorityTodoList
-                priority="@low"
-                title="LOWEST PRIORITY"
-                simultaneousHandlers={scrollViewRef}
-              />
+              <PriorityTodoList simultaneousHandlers={scrollViewRef} />
             </Animated.View>
           </View>
         )}

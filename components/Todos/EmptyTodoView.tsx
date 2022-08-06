@@ -18,7 +18,7 @@ export default function EmptyTodoView() {
         style={{
           width: "100%",
           flex: 1,
-          backgroundColor: "#f7f7f7",
+          backgroundColor: "#fff",
         }}
         source={require("../../assets/lottie/cat.json")}
       />
