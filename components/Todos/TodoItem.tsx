@@ -110,7 +110,7 @@ const TodoItem = ({
       >
         <Animated.View style={[styles.cardContainer, reanimatedPanStyle]}>
           {data.priority === "@high" ? (
-            <View bgColor="violet.400" w="1" h="full" rounded="full" mr="2" />
+            <View bgColor="violet.500" w="1" h="full" rounded="full" mr="2" />
           ) : (
             <View w="1" h="full" rounded="full" mr="2" />
           )}
