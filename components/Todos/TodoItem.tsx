@@ -28,7 +28,7 @@ interface TodoItemProps
 }
 
 const ITEM_HEIGHT = 72;
-const MARGIN_BOTTOM = 3;
+const MARGIN_BOTTOM = 2;
 
 const TodoItem = ({
   data,
@@ -104,24 +104,24 @@ const TodoItem = ({
         simultaneousHandlers={simultaneousHandlers}
       >
         <Animated.View style={[styles.cardContainer, reanimatedPanStyle]}>
-          <Pressable
-            flexDir="row"
-            alignItems="center"
-            onPress={handlePress}
-            py="1.5"
-          >
+          {data.priority === "@high" ? (
+            <View bgColor="violet.400" w="1" h="full" rounded="full" mr="2" />
+          ) : (
+            <View w="1" h="full" rounded="full" mr="2" />
+          )}
+          <Pressable flexDir="row" alignItems="center" onPress={handlePress}>
             <CheckBox isChecked={data.status} priority={data.priority} />
             <View width="84%">
               <Text
-                fontSize="20"
+                fontSize="22"
                 textDecorationLine={data.status ? "line-through" : null}
-                color={data.status ? "gray.400" : "black"}
+                color={data.status ? "gray.300" : "black"}
                 numberOfLines={1}
               >
                 {data.todo}
               </Text>
               <Text fontSize="xs" color="gray.400">
-                {moment(data.date).format("LLL")}
+                {moment(data.date).fromNow()}
               </Text>
             </View>
           </Pressable>
@@ -136,7 +136,6 @@ export default TodoItem;
 const styles = StyleSheet.create({
   card: {
     marginBottom: MARGIN_BOTTOM,
-    elevation: 1,
   },
   cardContainer: {
     height: ITEM_HEIGHT,

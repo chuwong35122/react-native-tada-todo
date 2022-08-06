@@ -1,29 +1,30 @@
 import { View } from "native-base";
 import React from "react";
-import { Feather } from "@expo/vector-icons";
-import { TodoColorName } from "../../interfaces/todo.interface";
-import { colors, checkedColors } from "../../constants/colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { PriorityTodoKey } from "../../interfaces/todo.interface";
 
 type CheckBoxProps = {
   isChecked: boolean;
-  color: TodoColorName;
+  priority: PriorityTodoKey;
 };
 
-const CheckBox = ({ isChecked, color }: CheckBoxProps) => {
+const CheckBox = ({ isChecked, priority }: CheckBoxProps) => {
   return (
     <View
-      width="7"
-      height="7"
-      rounded="full"
-      bgColor="gray.100"
+      width="6"
+      height="6"
+      rounded="md"
       alignItems="center"
       justifyContent="center"
-      // borderColor={isChecked ? checkedColors[color] : colors[color]}
-      borderColor="black"
       borderWidth={2}
-      mr={4}
+      mr={3}
+      borderColor="black"
     >
-      {isChecked ? <Feather name="check" size={20} color="#4b5563" /> : <></>}
+      {isChecked ? (
+        <MaterialCommunityIcons name="check-bold" size={20} color="#7c3aed" />
+      ) : (
+        <></>
+      )}
     </View>
   );
 };

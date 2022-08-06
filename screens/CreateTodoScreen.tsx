@@ -1,12 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { View, Input, Button, VStack, Text, Switch, HStack } from "native-base";
 import { v4 as uuidv4 } from "uuid";
-import TodoColorPicker from "../components/Todos/TodoColorPicker";
-import {
-  PriorityTodoKey,
-  TodoColorName,
-  TodoItemType,
-} from "../interfaces/todo.interface";
+import { PriorityTodoKey, TodoItemType } from "../interfaces/todo.interface";
 import "react-native-get-random-values";
 import { StackNavigationScreenTypes } from "./navigation.types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -24,7 +19,6 @@ const CreateTodoScreen = () => {
   const [input, setInput] = useState("");
   const [titlePlaceholder, setTitlePlaceholder] = useState("");
   const [priority, setPriority] = useState(false);
-  const [selectedColor, setSelectedColor] = useState<TodoColorName>("Blue");
   const { todoList, updateTodoList } = useContext(TodoContext);
 
   // random funny placeholder
@@ -54,7 +48,6 @@ const CreateTodoScreen = () => {
       todo: input,
       date: new Date(),
       status: false,
-      color: selectedColor,
     };
 
     await addTodo(newTodo, priorityKey);
@@ -103,19 +96,11 @@ const CreateTodoScreen = () => {
               onTrackColor="violet.200"
               onThumbColor="violet.500"
               offThumbColor="gray.100"
-              // isChecked={priority}
               onValueChange={(val) => handleChangeSwitch(val)}
               value={priority}
             />
             <Text color="gray.500">High</Text>
           </HStack>
-        </View>
-        <View>
-          <Text fontFamily="Roboto_400Regular">Add a color</Text>
-          <TodoColorPicker
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-          />
         </View>
         <Button size="lg" bgColor="black" color="white" onPress={handleSubmit}>
           CREATE!
