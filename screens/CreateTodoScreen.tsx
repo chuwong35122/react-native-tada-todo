@@ -87,7 +87,10 @@ const CreateTodoScreen = () => {
         <View flexDir="row" alignItems="center" justifyContent="space-between">
           <Text fontFamily="Roboto_500Medium">Set priority</Text>
           <HStack alignItems="center" space="2">
-            <Text fontSize="sm" color="gray.500">
+            <Text
+              fontSize="sm"
+              color={priority === false ? "black" : "gray.500"}
+            >
               Low
             </Text>
             <Switch
@@ -99,7 +102,7 @@ const CreateTodoScreen = () => {
               onValueChange={(val) => handleChangeSwitch(val)}
               value={priority}
             />
-            <Text color="gray.500">High</Text>
+            <Text color={priority === true ? "black" : "gray.500"}>High</Text>
           </HStack>
         </View>
         <Button size="lg" bgColor="black" color="white" onPress={handleSubmit}>

@@ -48,5 +48,4 @@ export async function removeTodoItem(id: string, key: PriorityTodoKey) {
 export async function clearAllTodo() {
   await AsyncStorage.setItem("@high", JSON.stringify([]));
   await AsyncStorage.setItem("@med", JSON.stringify([]));
-  await AsyncStorage.setItem("@low", JSON.stringify([]));
 }

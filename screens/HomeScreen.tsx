@@ -11,13 +11,14 @@ import Animated, { ZoomIn } from "react-native-reanimated";
 import { TodoContext } from "./../contexts/TodoContext";
 import EmptyTodoView from "../components/Todos/EmptyTodoView";
 import { TouchableOpacity } from "react-native";
+import TodoLoading from "../components/Todos/TodoLoading";
 
 const HomeScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
   const scrollViewRef = useRef(null);
-  const { todoList } = useContext(TodoContext);
+  const { todoList, todoLoading } = useContext(TodoContext);
 
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 14 }}>
@@ -37,16 +38,23 @@ const HomeScreen = () => {
             <AntDesign name="setting" size={26} color="black" />
           </TouchableOpacity>
         </View>
-        {todoList.length === 0 ? (
-          <EmptyTodoView />
+        {todoLoading ? (
+          <TodoLoading />
         ) : (
           <View>
-            <Animated.View entering={ZoomIn.springify().stiffness(60)}>
-              <PriorityTodoList simultaneousHandlers={scrollViewRef} />
-            </Animated.View>
+            {todoList.length === 0 ? (
+              <EmptyTodoView />
+            ) : (
+              <View>
+                <Animated.View entering={ZoomIn.springify().stiffness(60)}>
+                  <PriorityTodoList simultaneousHandlers={scrollViewRef} />
+                </Animated.View>
+              </View>
+            )}
           </View>
         )}
       </ScrollView>
+
       <Fab
         backgroundColor="white"
         size="lg"

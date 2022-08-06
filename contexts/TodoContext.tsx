@@ -11,12 +11,14 @@ import { getAllTodo } from "../utils/todo";
 interface TodoContextProps {
   todoList: TodoItemType[];
   setTodoList: Dispatch<SetStateAction<TodoItemType[]>>;
+  todoLoading: boolean;
   updateTodoList: () => Promise<void>;
 }
 
 export const TodoContext = createContext({} as TodoContextProps);
 const TodoContextProvider = ({ ...props }) => {
   const [todoList, setTodoList] = useState<TodoItemType[]>([]);
+  const [todoLoading, setTodoLoading] = useState(false);
 
   async function updateTodoList() {
     const _todoList: TodoItemType[] = [];
@@ -31,8 +33,10 @@ const TodoContextProvider = ({ ...props }) => {
   useEffect(() => {
     let canceled = false;
     async function fn() {
-      if (canceled) {
+      setTodoLoading(true);
+      if (!canceled) {
         await updateTodoList();
+        setTodoLoading(false);
       }
     }
 
@@ -47,6 +51,7 @@ const TodoContextProvider = ({ ...props }) => {
     todoList,
     setTodoList,
     updateTodoList,
+    todoLoading,
   };
 
   return <TodoContext.Provider value={values} {...props} />;
