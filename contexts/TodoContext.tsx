@@ -6,7 +6,7 @@ import React, {
   useEffect,
 } from "react";
 import { TodoItemType } from "../interfaces/todo.interface";
-import { getAllTodo } from "../utils/todo";
+import { getAllTodo, initializeTodoList } from "../utils/todo";
 
 interface TodoContextProps {
   todoList: TodoItemType[];
@@ -35,6 +35,7 @@ const TodoContextProvider = ({ ...props }) => {
     async function fn() {
       setTodoLoading(true);
       if (!canceled) {
+        await initializeTodoList();
         await updateTodoList();
         setTodoLoading(false);
       }

@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PriorityTodoKey, TodoItemType } from "../interfaces/todo.interface";
+import moment from "moment";
 
 export async function getAllTodo(key: PriorityTodoKey) {
   const result = await AsyncStorage.getItem(key);
@@ -43,4 +44,23 @@ export async function removeTodoItem(id: string, key: PriorityTodoKey) {
   await saveTodo(filtered, key);
 
   return filtered;
+}
+
+/**
+ * Filter finished todo item with age > 3 days to save storage space.
+ *  */
+export async function initializeTodoList() {
+  const now = moment();
+  const highs = await getAllTodo("@high");
+  const meds = await getAllTodo("@med");
+
+  const filteredHighs = highs.filter(
+    (hi) => hi.status === true && moment(hi.date).diff(now, "days") < 3
+  );
+  const filteredMeds = meds.filter(
+    (me) => me.status === true && moment(me.date).diff(now, "day") < 3
+  );
+
+  await saveTodo(filteredHighs, "@high");
+  await saveTodo(filteredMeds, "@med");
 }
