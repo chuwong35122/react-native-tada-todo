@@ -8,3 +8,7 @@ export async function getIsFirstTime() {
 export async function setIsFirstTime() {
   await AsyncStorage.setItem("@first", "false");
 }
+
+export async function clearStorage() {
+  await AsyncStorage.multiRemove(["@first", "@med", "@high"]);
+}

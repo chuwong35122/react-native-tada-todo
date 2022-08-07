@@ -1,8 +1,8 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef } from "react";
 import { Fab, Text, View } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { StackNavigationScreenTypes } from "./navigation.types";
 import { AntDesign } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -21,7 +21,7 @@ const HomeScreen = () => {
   const scrollViewRef = useRef(null);
   const { todoList, todoLoading } = useContext(TodoContext);
 
-  useEffect(() => {
+  useFocusEffect(() => {
     let canceled = false;
     async function fn() {
       if (!canceled) {
@@ -36,7 +36,7 @@ const HomeScreen = () => {
     return () => {
       canceled = true;
     };
-  }, []);
+  });
 
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 14 }}>

@@ -20,13 +20,7 @@ const IntroduceScreen = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View
-        width={width}
-        height={height}
-        mt="4"
-        px="6"
-        justifyContent="space-around"
-      >
+      <View width={width} height={height} px="6" justifyContent="space-between">
         <View>
           <Text fontSize="2xl" fontFamily="Roboto_400Regular">
             Welcome to
@@ -49,7 +43,7 @@ const IntroduceScreen = () => {
             />
           </View>
         </View>
-        <Button backgroundColor="black" size="lg" onPress={handlePress}>
+        <Button backgroundColor="black" size="lg" onPress={handlePress} mb="20">
           LET'S TADA MY TO-DO!
         </Button>
       </View>

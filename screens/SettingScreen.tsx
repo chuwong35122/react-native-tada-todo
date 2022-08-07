@@ -6,19 +6,17 @@ import {
   Button,
   AlertDialog,
   VStack,
-  Input,
   HStack,
   useToast,
   Box,
-  Select,
-  CheckIcon,
 } from "native-base";
 import React, { useState, useRef, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { clearAllTodo } from "../utils/todo";
 import { TodoContext } from "./../contexts/TodoContext";
 import { StackNavigationScreenTypes } from "./navigation.types";
 import LottieView from "lottie-react-native";
+import LanguageSelector from "../components/ui/LanguageSelector";
+import { clearStorage } from "../utils/settings";
 
 const SettingScreen = () => {
   const navigation =
@@ -26,7 +24,6 @@ const SettingScreen = () => {
 
   const { updateTodoList } = useContext(TodoContext);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const [language, setLanguage] = useState("EN");
   const cancelRef = useRef(null);
 
   function onClose() {
@@ -35,7 +32,7 @@ const SettingScreen = () => {
 
   // clear all To-Do
   async function onPressDeleteTodo() {
-    await clearAllTodo();
+    await clearStorage();
     updateTodoList();
     showToast();
     onClose();
@@ -45,10 +42,13 @@ const SettingScreen = () => {
   function showToast() {
     toast.show({
       placement: "top",
+
       render: () => {
         return (
-          <Box bg="black" p="1">
-            <Text color="white">To-Do cleared!</Text>
+          <Box bg="black" p="2" rounded="md" mt="4">
+            <Text color="white" fontSize="lg">
+              To-Do cleared!
+            </Text>
           </Box>
         );
       },
@@ -103,24 +103,7 @@ const SettingScreen = () => {
           <Text fontSize="lg" fontFamily="Roboto_300Light">
             Language
           </Text>
-          <Select
-            selectedValue={language}
-            minWidth="200"
-            accessibilityLabel="Select language"
-            _selectedItem={{
-              bg: "violet.100",
-              endIcon: <CheckIcon size="5" />,
-            }}
-            mt={1}
-            onValueChange={(val) => setLanguage(val)}
-          >
-            <Select.Item label="English" value="EN" />
-            <Select.Item label="ไทย" value="TH" />
-            <Select.Item label="Italian" value="ITA" />
-            <Select.Item label="Spanish" value="SPA" />
-            <Select.Item label="China" value="CHI" />
-            <Select.Item label="Japanese" value="JAP" />
-          </Select>
+          <LanguageSelector />
         </HStack>
         <View alignItems="center" justifyContent="center" px="6">
           <LottieView
