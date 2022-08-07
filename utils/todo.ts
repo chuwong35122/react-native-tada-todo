@@ -55,10 +55,10 @@ export async function initializeTodoList() {
   const meds = await getAllTodo("@med");
 
   const filteredHighs = highs.filter(
-    (hi) => hi.status === true && moment(hi.date).diff(now, "days") < 3
+    (hi) => hi.status !== true && moment(hi.date).diff(now, "days") < 3
   );
   const filteredMeds = meds.filter(
-    (me) => me.status === true && moment(me.date).diff(now, "day") < 3
+    (me) => me.status !== true && moment(me.date).diff(now, "day") < 3
   );
 
   await saveTodo(filteredHighs, "@high");
