@@ -68,11 +68,8 @@ const SettingScreen = () => {
       >
         <AlertDialog.Content>
           <AlertDialog.CloseButton />
-          <AlertDialog.Header>Clear all To-Do</AlertDialog.Header>
-          <AlertDialog.Body>
-            This action will clear all To-Do list in every priority you had.
-            Deleted data can not be recovered.
-          </AlertDialog.Body>
+          <AlertDialog.Header>{t("clearModal.header")}</AlertDialog.Header>
+          <AlertDialog.Body>{t("clearModal.body")}</AlertDialog.Body>
           <AlertDialog.Footer>
             <Button.Group space={4}>
               <Button
@@ -82,16 +79,15 @@ const SettingScreen = () => {
                 backgroundColor="black"
                 _text={{ color: "white" }}
               >
-                Cancel
+                {t("clearModal.cancelBtn")}
               </Button>
               <Button
                 variant="ghost"
-                onPress={onClose}
                 _text={{ color: "rose.600" }}
-                _press={{ backgroundColor: "gray.200" }}
                 onPress={onPressDeleteTodo}
+                _pressed={{ backgroundColor: "rose.200" }}
               >
-                Delete
+                {t("clearModal.deleteBtn")}
               </Button>
             </Button.Group>
           </AlertDialog.Footer>

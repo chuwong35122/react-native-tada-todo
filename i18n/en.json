@@ -22,5 +22,11 @@
     "high": "High",
     "createBtn": "CREATE!",
     "backBtn": "BACK"
+  },
+  "clearModal": {
+    "header": "Clear all To-Do",
+    "body": "This action will clear all To-Do list in every priority you had. Deleted data can not be recovered.",
+    "cancelBtn": "CANCEL",
+    "deleteBtn": "DELETE"
   }
 }
