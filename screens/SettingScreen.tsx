@@ -8,12 +8,17 @@ import {
   VStack,
   Input,
   HStack,
+  useToast,
+  Box,
+  Select,
+  CheckIcon,
 } from "native-base";
 import React, { useState, useRef, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { clearAllTodo } from "../utils/todo";
 import { TodoContext } from "./../contexts/TodoContext";
 import { StackNavigationScreenTypes } from "./navigation.types";
+import LottieView from "lottie-react-native";
 
 const SettingScreen = () => {
   const navigation =
@@ -21,10 +26,7 @@ const SettingScreen = () => {
 
   const { updateTodoList } = useContext(TodoContext);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const [errors, setErrors] = useState({
-    name: "",
-    days: 0,
-  });
+  const [language, setLanguage] = useState("EN");
   const cancelRef = useRef(null);
 
   function onClose() {
@@ -34,10 +36,23 @@ const SettingScreen = () => {
   // clear all To-Do
   async function onPressDeleteTodo() {
     await clearAllTodo();
-    await updateTodoList("@high");
-    await updateTodoList("@med");
-    await updateTodoList("@low");
+    updateTodoList();
+    showToast();
     onClose();
+  }
+
+  const toast = useToast();
+  function showToast() {
+    toast.show({
+      placement: "top",
+      render: () => {
+        return (
+          <Box bg="black" p="1">
+            <Text color="white">To-Do cleared!</Text>
+          </Box>
+        );
+      },
+    });
   }
 
   return (
@@ -84,47 +99,44 @@ const SettingScreen = () => {
           Settings
         </Text>
         {/* Settings */}
-        <View>
-          {/* Name */}
-          <HStack justifyContent="space-between" alignItems="flex-end">
-            <Text fontSize="lg">Display name</Text>
-            <Input
-              variant="underlined"
-              size="md"
-              placeholder="My Fabulous Name"
-              width="56"
-              textAlign="center"
-              pb="0"
-              fontSize="md"
-              _focus={{
-                borderColor: "black",
-              }}
-            />
-          </HStack>
-          <Text color="gray.400" fontSize="xs">
-            Change your display name.
+        <HStack justifyContent="space-between" alignItems="center">
+          <Text fontSize="lg" fontFamily="Roboto_300Light">
+            Language
           </Text>
-        </View>
-        <View>
-          {/* Clearing Days Gap */}
-          <HStack justifyContent="space-between" alignItems="flex-end">
-            <Text fontSize="lg">Clearing Days Gap</Text>
-            <Input
-              variant="underlined"
-              size="md"
-              placeholder="3"
-              w="16"
-              textAlign="center"
-              pb="0"
-              fontSize="lg"
-              keyboardType="numeric"
-              _focus={{
-                borderColor: "black",
-              }}
-            />
-          </HStack>
-          <Text color="gray.400" fontSize="xs">
-            Number of days before deleting finished To-Do.
+          <Select
+            selectedValue={language}
+            minWidth="200"
+            accessibilityLabel="Select language"
+            _selectedItem={{
+              bg: "violet.100",
+              endIcon: <CheckIcon size="5" />,
+            }}
+            mt={1}
+            onValueChange={(val) => setLanguage(val)}
+          >
+            <Select.Item label="English" value="EN" />
+            <Select.Item label="ไทย" value="TH" />
+            <Select.Item label="Italian" value="ITA" />
+            <Select.Item label="Spanish" value="SPA" />
+            <Select.Item label="China" value="CHI" />
+            <Select.Item label="Japanese" value="JAP" />
+          </Select>
+        </HStack>
+        <View alignItems="center" justifyContent="center" px="6">
+          <LottieView
+            autoPlay
+            loop
+            style={{
+              width: "100%",
+              height: 360,
+            }}
+            source={require("../assets/lottie/cat.json")}
+          />
+          <Text fontSize="lg" fontFamily="Roboto_300Light" textAlign="center">
+            This is kind of empty...
+          </Text>
+          <Text fontSize="lg" fontFamily="Roboto_300Light" textAlign="center">
+            but it's a space for a cat
           </Text>
         </View>
       </VStack>
