@@ -29,5 +29,11 @@
     "body": "This action will clear all To-Do list in every priority you had. Deleted data can not be recovered.",
     "cancelBtn": "CANCEL",
     "deleteBtn": "DELETE"
+  },
+  "introduce": {
+    "welcome": "Welcome to",
+    "desc": "A simple & completely offline To-Do list app.",
+    "selectLang": "Select your preferred language",
+    "btn": "LET'S TADA MY TO-DO!"
   }
 }

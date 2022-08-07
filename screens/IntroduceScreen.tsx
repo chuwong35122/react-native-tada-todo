@@ -7,11 +7,15 @@ import { setIsFirstTime } from "../utils/settings";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackNavigationScreenTypes } from "./navigation.types";
 import { useNavigation } from "@react-navigation/native";
+import LanguageSelector from "../components/ui/LanguageSelector";
+import { useTranslation } from "react-i18next";
 
 const IntroduceScreen = () => {
   const { width, height } = useWindowDimensions();
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
+
+  const { t } = useTranslation();
 
   async function handlePress() {
     await setIsFirstTime();
@@ -23,13 +27,13 @@ const IntroduceScreen = () => {
       <View width={width} height={height} px="6" justifyContent="space-between">
         <View>
           <Text fontSize="2xl" fontFamily="Roboto_400Regular">
-            Welcome to
+            {t("introduce.welcome")}
           </Text>
           <Text fontSize="4xl" fontFamily="Roboto_500Medium" color="violet.600">
             TADA TO-DO
           </Text>
           <Text fontSize="lg" fontFamily="Roboto_400Regular">
-            A simple, yet organized To-Do app.
+            {t("introduce.desc")}
           </Text>
           <View w="full" alignItems="center">
             <LottieView
@@ -43,8 +47,12 @@ const IntroduceScreen = () => {
             />
           </View>
         </View>
+        <View>
+          <Text>{t("introduce.selectLang")}</Text>
+          <LanguageSelector />
+        </View>
         <Button backgroundColor="black" size="lg" onPress={handlePress} mb="20">
-          LET'S TADA MY TO-DO!
+          {t("introduce.btn")}
         </Button>
       </View>
     </SafeAreaView>
