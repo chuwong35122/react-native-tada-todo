@@ -44,10 +44,10 @@ const TodoItem = ({
 
   async function handlePress() {
     const newStatus = await setTodoStatus(data.id, data.priority);
-    await updateTodoList();
     if (newStatus?.status === true) {
       await playSfx();
     }
+    await updateTodoList();
   }
 
   const translateX = useSharedValue(0);
