@@ -1,0 +1,11 @@
+{
+  "settings": {
+    "header": "Settings",
+    "catText1": "This is kind of empty...",
+    "catText2": "but it's space for a cat",
+    "clearAll": "CLEAR ALL TO-DO",
+    "back": "GO BACK",
+    "cleared": "To-Do cleared!",
+    "languageLabel": "Language"
+  }
+}

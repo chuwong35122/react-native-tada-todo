@@ -17,10 +17,12 @@ import { StackNavigationScreenTypes } from "./navigation.types";
 import LottieView from "lottie-react-native";
 import LanguageSelector from "../components/ui/LanguageSelector";
 import { clearStorage } from "../utils/settings";
+import { useTranslation } from "react-i18next";
 
 const SettingScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
+  const { t } = useTranslation();
 
   const { updateTodoList } = useContext(TodoContext);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -47,7 +49,8 @@ const SettingScreen = () => {
         return (
           <Box bg="black" p="2" rounded="md" mt="4">
             <Text color="white" fontSize="lg">
-              To-Do cleared!
+              {/* To-Do cleared! */}
+              {t("settings.cleared")}
             </Text>
           </Box>
         );
@@ -96,12 +99,12 @@ const SettingScreen = () => {
       </AlertDialog>
       <VStack px="4" space={3}>
         <Text fontSize="3xl" fontFamily="Roboto_500Medium">
-          Settings
+          {t("settings.header")}
         </Text>
         {/* Settings */}
         <HStack justifyContent="space-between" alignItems="center">
           <Text fontSize="lg" fontFamily="Roboto_300Light">
-            Language
+            {t("settings.languageLabel")}
           </Text>
           <LanguageSelector />
         </HStack>
@@ -116,10 +119,10 @@ const SettingScreen = () => {
             source={require("../assets/lottie/cat.json")}
           />
           <Text fontSize="lg" fontFamily="Roboto_300Light" textAlign="center">
-            This is kind of empty...
+            {t("settings.catText1")}
           </Text>
           <Text fontSize="lg" fontFamily="Roboto_300Light" textAlign="center">
-            but it's a space for a cat
+            {t("settings.catText2")}
           </Text>
         </View>
       </VStack>
@@ -140,7 +143,7 @@ const SettingScreen = () => {
           }}
           onPress={() => setIsAlertOpen(true)}
         >
-          CLEAR ALL TO-DO
+          {t("settings.clearAll")}
         </Button>
         <Button
           size="lg"
@@ -148,7 +151,7 @@ const SettingScreen = () => {
           bgColor="black"
           onPress={() => navigation.goBack()}
         >
-          Go Back
+          {t("settings.back")}
         </Button>
       </VStack>
     </SafeAreaView>
