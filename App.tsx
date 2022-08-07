@@ -10,7 +10,7 @@ import {
   Roboto_500Medium,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
-import { View, Text, LogBox } from "react-native";
+import { LogBox } from "react-native";
 
 // screens
 import { StackNavigationScreenTypes } from "./screens/navigation.types";
@@ -18,8 +18,11 @@ import HomeScreen from "./screens/HomeScreen";
 import CreateTodoScreen from "./screens/CreateTodoScreen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingScreen from "./screens/SettingScreen";
+import TodoLoading from "./components/Todos/TodoLoading";
+import IntroduceScreen from "./screens/IntroduceScreen";
 
-LogBox.ignoreLogs(["", "We can not support a function callback."]);
+// LogBox.ignoreLogs(["", "We can not support a function callback."]);
+LogBox.ignoreAllLogs();
 
 const Stack = createNativeStackNavigator<StackNavigationScreenTypes>();
 const themes = {
@@ -40,9 +43,9 @@ export default function App() {
 
   if (!fontsLoaded) {
     return (
-      <View>
-        <Text>Loading</Text>
-      </View>
+      <NativeBaseProvider>
+        <TodoLoading />
+      </NativeBaseProvider>
     );
   }
 
@@ -53,9 +56,16 @@ export default function App() {
           <TodoContextProvider>
             <SafeAreaProvider>
               <Stack.Navigator>
+                {
+                  <Stack.Screen
+                    name="Home"
+                    component={HomeScreen}
+                    options={{ headerShown: false }}
+                  />
+                }
                 <Stack.Screen
-                  name="Home"
-                  component={HomeScreen}
+                  name="Introduce"
+                  component={IntroduceScreen}
                   options={{ headerShown: false }}
                 />
                 <Stack.Screen

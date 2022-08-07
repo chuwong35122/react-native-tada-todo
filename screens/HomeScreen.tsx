@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import { Fab, Text, View } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -12,6 +12,7 @@ import { TodoContext } from "./../contexts/TodoContext";
 import EmptyTodoView from "../components/Todos/EmptyTodoView";
 import { TouchableOpacity } from "react-native";
 import TodoLoading from "../components/Todos/TodoLoading";
+import { getIsFirstTime } from "../utils/settings";
 
 const HomeScreen = () => {
   const navigation =
@@ -19,6 +20,23 @@ const HomeScreen = () => {
 
   const scrollViewRef = useRef(null);
   const { todoList, todoLoading } = useContext(TodoContext);
+
+  useEffect(() => {
+    let canceled = false;
+    async function fn() {
+      if (!canceled) {
+        const isFirstTime = await getIsFirstTime();
+        if (isFirstTime) {
+          navigation.replace("Introduce");
+        }
+      }
+    }
+
+    fn();
+    return () => {
+      canceled = true;
+    };
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 14 }}>

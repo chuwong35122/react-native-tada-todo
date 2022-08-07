@@ -14,6 +14,7 @@ export default function EmptyTodoView() {
     <Animated.View entering={ZoomIn}>
       <LottieView
         autoPlay
+        loop
         ref={animation}
         style={{
           width: "100%",
