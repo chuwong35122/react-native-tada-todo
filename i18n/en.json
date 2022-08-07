@@ -7,5 +7,20 @@
     "back": "GO BACK",
     "cleared": "To-Do cleared!",
     "languageLabel": "Language"
+  },
+  "home": {
+    "header": "My To-Do List",
+    "emptyTodo": "Oh wait... It is empty",
+    "createTodoDesc": "Create your first To-Do item by pressing the + button!"
+  },
+  "create": {
+    "header": "Create a To-Do",
+    "desc": "You can create a To-Do item here!",
+    "titleLabel": "Set a title",
+    "setPriority": "Set priority",
+    "low": "Low",
+    "high": "High",
+    "createBtn": "CREATE!",
+    "backBtn": "BACK"
   }
 }

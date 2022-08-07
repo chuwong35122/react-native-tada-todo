@@ -1,9 +1,10 @@
-import { Select, Text, View } from "native-base";
+import { Select } from "native-base";
 import React, { useEffect, useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { availableLanguages } from "../../i18n/i18n";
 import { LanguageTypes } from "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
+import { setAppLanguage } from "../../utils/settings";
 
 const LanguageSelector = () => {
   const { i18n } = useTranslation();
@@ -12,9 +13,12 @@ const LanguageSelector = () => {
     i18n.language as LanguageTypes
   );
   useEffect(() => {
-    i18n.changeLanguage(language);
+    async function fn() {
+      i18n.changeLanguage(language);
+      await setAppLanguage(language);
+    }
 
-    console.log(i18n.language);
+    fn();
   }, [language]);
 
   return (

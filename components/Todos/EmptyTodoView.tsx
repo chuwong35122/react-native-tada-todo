@@ -2,8 +2,11 @@ import React, { useRef, useEffect } from "react";
 import LottieView from "lottie-react-native";
 import { View, Text } from "native-base";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 
 export default function EmptyTodoView() {
+  const { t } = useTranslation();
+
   const animation = useRef(null);
   useEffect(() => {
     // You can control the ref programmatically, rather than using autoPlay
@@ -25,10 +28,10 @@ export default function EmptyTodoView() {
       />
       <View alignItems="center" justifyContent="center" px="4">
         <Text fontSize="2xl" fontFamily="Roboto_400Regular">
-          Oh wait... It is empty
+          {t("home.emptyTodo")}
         </Text>
         <Text fontSize="lg" fontFamily="Roboto_300Light" textAlign="center">
-          Create your first To-Do item by pressing the + button!
+          {t("home.createTodoDesc")}
         </Text>
       </View>
     </Animated.View>

@@ -14,10 +14,10 @@ export async function clearStorage() {
   await AsyncStorage.multiRemove(["@first", "@med", "@high"]);
 }
 
-export async function getLanguage() {
+export async function getAppLanguage() {
   return await AsyncStorage.getItem("@language");
 }
 
-export async function setLanguage(lang: LanguageTypes) {
+export async function setAppLanguage(lang: LanguageTypes) {
   await AsyncStorage.setItem("@language", lang);
 }

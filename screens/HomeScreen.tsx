@@ -13,10 +13,13 @@ import EmptyTodoView from "../components/Todos/EmptyTodoView";
 import { TouchableOpacity } from "react-native";
 import TodoLoading from "../components/Todos/TodoLoading";
 import { getIsFirstTime } from "../utils/settings";
+import { useTranslation } from "react-i18next";
 
 const HomeScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
+
+  const { t } = useTranslation();
 
   const scrollViewRef = useRef(null);
   const { todoList, todoLoading } = useContext(TodoContext);
@@ -50,7 +53,7 @@ const HomeScreen = () => {
           mb="4"
         >
           <Text fontSize="3xl" fontFamily="Roboto_500Medium" color="black">
-            My To-Do List
+            {t("home.header")}
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate("Setting")}>
             <AntDesign name="setting" size={26} color="black" />

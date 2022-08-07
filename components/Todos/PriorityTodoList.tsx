@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import { View } from "native-base";
 import React, { useCallback, useContext, useState, useEffect } from "react";
 import { TodoItemType } from "../../interfaces/todo.interface";
@@ -57,9 +56,3 @@ const PriorityTodoList = ({ simultaneousHandlers }: PriorityTodoListProps) => {
 };
 
 export default PriorityTodoList;
-
-const styles = StyleSheet.create({
-  card: {
-    elevation: 1,
-  },
-});

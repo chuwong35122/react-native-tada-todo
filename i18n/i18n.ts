@@ -23,12 +23,13 @@ const resources = {
 };
 
 i18n
+
   .use(initReactI18next)
   .use(languageDetectorPlugin)
   .init({
     resources,
-    lng: "en",
     fallbackLng: "en",
+    compatibilityJSON: "v3",
     interpolation: {
       escapeValue: false,
     },

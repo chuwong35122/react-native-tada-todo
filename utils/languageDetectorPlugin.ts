@@ -1,6 +1,6 @@
 import Localization from "expo-localization";
 import { LanguageTypes } from "../i18n/i18n";
-import { getLanguage, setLanguage } from "./settings";
+import { getAppLanguage, setAppLanguage } from "./settings";
 
 const languageDetectorPlugin = {
   type: "languageDetector",
@@ -8,8 +8,8 @@ const languageDetectorPlugin = {
   init: () => {},
   detect: async function (callback: (lang: string) => void) {
     //get stored language from Async storage
-    const language = await getLanguage();
-
+    const language = await getAppLanguage();
+    console.log({ language });
     if (language) {
       //if language was stored before, use this language in the app
       return callback(language);
@@ -20,7 +20,7 @@ const languageDetectorPlugin = {
   },
   cacheUserLanguage: async function (language: LanguageTypes) {
     //save a user's language choice in Async storage
-    await setLanguage(language);
+    await setAppLanguage(language);
   },
 };
 

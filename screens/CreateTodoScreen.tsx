@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { View, Input, Button, VStack, Text, Switch, HStack } from "native-base";
 import { v4 as uuidv4 } from "uuid";
-import { PriorityTodoKey, TodoItemType } from "../interfaces/todo.interface";
+import { TodoItemType } from "../interfaces/todo.interface";
 import "react-native-get-random-values";
 import { StackNavigationScreenTypes } from "./navigation.types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -9,17 +9,19 @@ import { useNavigation } from "@react-navigation/native";
 import { addTodo } from "../utils/todo";
 import { todoPlaceholder } from "../constants/placeholder";
 import { TodoContext } from "../contexts/TodoContext";
-import { Feather } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 const CreateTodoScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
 
+  const { t } = useTranslation();
+
   const [input, setInput] = useState("");
   const [titlePlaceholder, setTitlePlaceholder] = useState("");
   const [priority, setPriority] = useState(false);
-  const { todoList, updateTodoList } = useContext(TodoContext);
+  const { updateTodoList } = useContext(TodoContext);
 
   // random funny placeholder
   useEffect(() => {
@@ -67,15 +69,13 @@ const CreateTodoScreen = () => {
         <View>
           <View>
             <Text fontSize="3xl" fontFamily="Roboto_500Medium" lineHeight="xs">
-              Create a To-Do
+              {t("create.header")}
             </Text>
-            <Text fontFamily="Roboto_300Light">
-              You can create a To-Do item here!
-            </Text>
+            <Text fontFamily="Roboto_300Light">{t("create.desc")}</Text>
           </View>
 
           <View mt="4">
-            <Text fontFamily="Roboto_500Medium">Set a title</Text>
+            <Text fontFamily="Roboto_500Medium">{t("create.titleLabel")}</Text>
             <Input
               size="lg"
               placeholder={titlePlaceholder}
@@ -95,13 +95,13 @@ const CreateTodoScreen = () => {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Text fontFamily="Roboto_500Medium">Set priority</Text>
+            <Text fontFamily="Roboto_500Medium">{t("create.setPriority")}</Text>
             <HStack alignItems="center" space="2">
               <Text
                 fontSize="sm"
                 color={priority === false ? "black" : "gray.500"}
               >
-                Low
+                {t("create.low")}
               </Text>
               <Switch
                 size="lg"
@@ -112,7 +112,9 @@ const CreateTodoScreen = () => {
                 onValueChange={(val) => handleChangeSwitch(val)}
                 value={priority}
               />
-              <Text color={priority === true ? "black" : "gray.500"}>High</Text>
+              <Text color={priority === true ? "black" : "gray.500"}>
+                {t("create.high")}
+              </Text>
             </HStack>
           </View>
         </View>
@@ -124,7 +126,7 @@ const CreateTodoScreen = () => {
             onPress={handleSubmit}
             mb="2"
           >
-            CREATE!
+            {t("create.createBtn")}
           </Button>
           <Button
             size="lg"
@@ -141,7 +143,7 @@ const CreateTodoScreen = () => {
             }}
             onPress={() => navigation.goBack()}
           >
-            BACK
+            {t("create.backBtn")}
           </Button>
         </View>
       </VStack>
