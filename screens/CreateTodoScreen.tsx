@@ -58,73 +58,92 @@ const CreateTodoScreen = () => {
     <SafeAreaView
       style={{ backgroundColor: "#fff", paddingTop: 20, paddingHorizontal: 4 }}
     >
-      <VStack space={4} mx="2">
+      <VStack
+        space={4}
+        mx="2"
+        justifyContent="space-between"
+        style={{ height: 440 }}
+      >
         <View>
-          <Text fontSize="3xl" fontFamily="Roboto_500Medium" lineHeight="xs">
-            Create a To-Do
-          </Text>
-          <Text fontFamily="Roboto_300Light">
-            You can create a To-Do item here!
-          </Text>
-        </View>
-
-        <View>
-          <Text fontFamily="Roboto_500Medium">Set a title</Text>
-          <Input
-            size="lg"
-            placeholder={titlePlaceholder}
-            value={input}
-            autoFocus
-            onChangeText={(val) => handleChangeInput(val)}
-            placeholderTextColor="gray.500"
-            _focus={{
-              borderColor: "#000",
-              borderWidth: 1,
-              backgroundColor: "coolGray.100",
-            }}
-          />
-        </View>
-        <View flexDir="row" alignItems="center" justifyContent="space-between">
-          <Text fontFamily="Roboto_500Medium">Set priority</Text>
-          <HStack alignItems="center" space="2">
-            <Text
-              fontSize="sm"
-              color={priority === false ? "black" : "gray.500"}
-            >
-              Low
+          <View>
+            <Text fontSize="3xl" fontFamily="Roboto_500Medium" lineHeight="xs">
+              Create a To-Do
             </Text>
-            <Switch
+            <Text fontFamily="Roboto_300Light">
+              You can create a To-Do item here!
+            </Text>
+          </View>
+
+          <View mt="4">
+            <Text fontFamily="Roboto_500Medium">Set a title</Text>
+            <Input
               size="lg"
-              offTrackColor="gray.100"
-              onTrackColor="violet.200"
-              onThumbColor="violet.500"
-              offThumbColor="gray.100"
-              onValueChange={(val) => handleChangeSwitch(val)}
-              value={priority}
+              placeholder={titlePlaceholder}
+              value={input}
+              autoFocus
+              onChangeText={(val) => handleChangeInput(val)}
+              placeholderTextColor="gray.500"
+              _focus={{
+                borderColor: "#000",
+                borderWidth: 1,
+                backgroundColor: "coolGray.100",
+              }}
             />
-            <Text color={priority === true ? "black" : "gray.500"}>High</Text>
-          </HStack>
+          </View>
+          <View
+            flexDir="row"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Text fontFamily="Roboto_500Medium">Set priority</Text>
+            <HStack alignItems="center" space="2">
+              <Text
+                fontSize="sm"
+                color={priority === false ? "black" : "gray.500"}
+              >
+                Low
+              </Text>
+              <Switch
+                size="lg"
+                offTrackColor="gray.100"
+                onTrackColor="violet.200"
+                onThumbColor="violet.500"
+                offThumbColor="gray.100"
+                onValueChange={(val) => handleChangeSwitch(val)}
+                value={priority}
+              />
+              <Text color={priority === true ? "black" : "gray.500"}>High</Text>
+            </HStack>
+          </View>
         </View>
-        <Button size="lg" bgColor="black" color="white" onPress={handleSubmit}>
-          CREATE!
-        </Button>
-        <Button
-          size="lg"
-          variant="outline"
-          _text={{
-            color: "black",
-          }}
-          _pressed={{
-            backgroundColor: "gray.200",
-            borderColor: "gray.300",
-          }}
-          _focus={{
-            backgroundColor: "gray.200",
-          }}
-          onPress={() => navigation.goBack()}
-        >
-          BACK
-        </Button>
+        <View>
+          <Button
+            size="lg"
+            bgColor="black"
+            color="white"
+            onPress={handleSubmit}
+            mb="2"
+          >
+            CREATE!
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            _text={{
+              color: "black",
+            }}
+            _pressed={{
+              backgroundColor: "gray.200",
+              borderColor: "gray.300",
+            }}
+            _focus={{
+              backgroundColor: "gray.200",
+            }}
+            onPress={() => navigation.goBack()}
+          >
+            BACK
+          </Button>
+        </View>
       </VStack>
     </SafeAreaView>
   );
