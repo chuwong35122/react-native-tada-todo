@@ -21,7 +21,8 @@
     "low": "ต่ำ",
     "high": "สูง",
     "createBtn": "สร้าง",
-    "backBtn": "กลับ"
+    "backBtn": "กลับ",
+    "longErr": "โปรดใช้ประโยคที่สั้นลง"
   },
   "clearModal": {
     "header": "ล้าง To-Do ทั้งหมด",

@@ -8,7 +8,6 @@ import {
   VStack,
   HStack,
   useToast,
-  Box,
 } from "native-base";
 import React, { useState, useRef, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -18,6 +17,7 @@ import LottieView from "lottie-react-native";
 import LanguageSelector from "../components/ui/LanguageSelector";
 import { clearStorage } from "../utils/settings";
 import { useTranslation } from "react-i18next";
+import ToastMessage from "./../components/ui/ToastMessage";
 
 const SettingScreen = () => {
   const navigation =
@@ -46,14 +46,7 @@ const SettingScreen = () => {
       placement: "top",
 
       render: () => {
-        return (
-          <Box bg="black" p="2" rounded="md" mt="4">
-            <Text color="white" fontSize="lg">
-              {/* To-Do cleared! */}
-              {t("settings.cleared")}
-            </Text>
-          </Box>
-        );
+        return <ToastMessage val="settings.cleared" bg="black" />;
       },
     });
   }

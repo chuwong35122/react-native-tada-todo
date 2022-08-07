@@ -1,5 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, Input, Button, VStack, Text, Switch, HStack } from "native-base";
+import {
+  View,
+  Input,
+  Button,
+  VStack,
+  Text,
+  Switch,
+  HStack,
+  useToast,
+} from "native-base";
 import { v4 as uuidv4 } from "uuid";
 import { TodoItemType } from "../interfaces/todo.interface";
 import "react-native-get-random-values";
@@ -11,6 +20,7 @@ import { todoPlaceholder } from "../constants/placeholder";
 import { TodoContext } from "../contexts/TodoContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
+import ToastMessage from "../components/ui/ToastMessage";
 
 const CreateTodoScreen = () => {
   const navigation =
@@ -37,10 +47,21 @@ const CreateTodoScreen = () => {
     setPriority(val);
   }
 
+  // const toast = useToast();
   async function handleSubmit() {
     if (!input) {
       return;
     }
+    //  else if (input.length > 33) {
+    //   toast.show({
+    //     placement: "top",
+    //     render: () => {
+    //       return <ToastMessage val="create.longErr" bg="black" />;
+    //     },
+    //   });
+
+    //   return;
+    // }
 
     const id = uuidv4();
     const priorityKey = priority ? "@high" : "@med";

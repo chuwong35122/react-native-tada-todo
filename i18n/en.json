@@ -21,7 +21,8 @@
     "low": "Low",
     "high": "High",
     "createBtn": "CREATE!",
-    "backBtn": "BACK"
+    "backBtn": "BACK",
+    "longErr": "Input is too long!"
   },
   "clearModal": {
     "header": "Clear all To-Do",

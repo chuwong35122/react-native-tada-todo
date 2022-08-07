@@ -20,6 +20,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 
 interface TodoItemProps
   extends Pick<PanGestureHandlerProps, "simultaneousHandlers"> {
@@ -118,10 +119,9 @@ const TodoItem = ({
             <CheckBox isChecked={data.status} priority={data.priority} />
             <View width="84%">
               <Text
-                fontSize="22"
+                fontSize="lg"
                 textDecorationLine={data.status ? "line-through" : null}
                 color={data.status ? "gray.300" : "black"}
-                numberOfLines={1}
               >
                 {data.todo}
               </Text>
