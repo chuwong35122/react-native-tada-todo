@@ -1,0 +1,49 @@
+{
+  "settings": {
+    "header": "",
+    "catText1": "",
+    "catText2": "",
+    "clearAll": "",
+    "back": "",
+    "cleared": "",
+    "languageLabel": ""
+  },
+  "home": {
+    "header": "",
+    "emptyTodo": "",
+    "createTodoDesc": ""
+  },
+  "create": {
+    "header": "",
+    "desc": "",
+    "titleLabel": "",
+    "setPriority": "",
+    "low": "",
+    "high": "",
+    "createBtn": "",
+    "backBtn": "",
+    "longErr": ""
+  },
+  "clearModal": {
+    "header": "",
+    "body": "",
+    "cancelBtn": "",
+    "deleteBtn": ""
+  },
+  "introduce": {
+    "welcome": "",
+    "desc": "",
+    "selectLang": "",
+    "btn": ""
+  },
+  "placeholder": {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4": "",
+    "5": "",
+    "6": "",
+    "7": "",
+    "8": ""
+  }
+}

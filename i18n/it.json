@@ -1,0 +1,49 @@
+{
+  "settings": {
+    "header": "Impostazioni",
+    "catText1": "Sembra un po' vuoto",
+    "catText2": "Ma è uno spazio per il gattino",
+    "clearAll": "Cancella tutto",
+    "back": "Indietro",
+    "cleared": "Cancellato",
+    "languageLabel": "Lingua"
+  },
+  "home": {
+    "header": "La mia lista To-Do",
+    "emptyTodo": "Aspetta un attimo… è vuoto",
+    "createTodoDesc": "Crea la tua prima lista To-Do premendo il tasto +"
+  },
+  "create": {
+    "header": "Crea To-Do",
+    "desc": "Puoi creare una lista To-Do qui",
+    "titleLabel": "Crea un titolo",
+    "setPriority": "Imposta la priorità",
+    "low": "Bassa",
+    "high": "Alta",
+    "createBtn": "CREA",
+    "backBtn": "INDIETRO",
+    "longErr": "L'imput è troppo lungo"
+  },
+  "clearModal": {
+    "header": "Cancella tutto",
+    "body": "Questa azione cancellerà tutte le liste To-Do. I dati cancellati non potranno essere recuperati.",
+    "cancelBtn": "Anulla",
+    "deleteBtn": "Elimina"
+  },
+  "introduce": {
+    "welcome": "Benvenuto",
+    "desc": "Un semplice e completamente offline To-Do app",
+    "selectLang": "Seleziona la tua lingua preferita",
+    "btn": "TADA ANDIAMO AL TO-DO"
+  },
+  "placeholder": {
+    "1": "Studiare magie",
+    "2": "Accarezzare qualcosa di carino",
+    "3": "Lucidare un boomerang",
+    "4": "Infornare dei biscotti",
+    "5": "Prendere del legno e creare un banco da lavoro",
+    "6": "Colpire gentilmente la testa di un elefante",
+    "7": "Abbracciare un orso grizzly",
+    "8": "Nuotare con i delfini"
+  }
+}
