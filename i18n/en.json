@@ -35,5 +35,15 @@
     "desc": "A simple & completely offline To-Do list app.",
     "selectLang": "Select your preferred language",
     "btn": "LET'S TADA MY TO-DO!"
+  },
+  "placeholder": {
+    "1": "Study magic",
+    "2": "Pet a good boy",
+    "3": "Polish a batmarang",
+    "4": "Bake a cookie",
+    "5": "Punch woods and create a crafting table",
+    "6": "Gently bonk an elephant's head",
+    "7": "Hug a grizzly bear",
+    "8": "Swim with dolphin"
   }
 }

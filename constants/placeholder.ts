@@ -1,7 +1,10 @@
 export const todoPlaceholder = [
-  "Study magic",
-  "Pet a good boy",
-  "Polish Batmarang",
-  "Bake a cookie",
-  "Punch woods and create a crafting table",
+  "placeholder.1",
+  "placeholder.2",
+  "placeholder.3",
+  "placeholder.4",
+  "placeholder.5",
+  "placeholder.6",
+  "placeholder.7",
+  "placeholder.8",
 ];
