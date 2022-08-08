@@ -20,8 +20,8 @@
     "setPriority": "Imposta la priorità",
     "low": "Bassa",
     "high": "Alta",
-    "createBtn": "CREA",
-    "backBtn": "INDIETRO",
+    "createBtn": "Crea",
+    "backBtn": "Indietro",
     "longErr": "L'imput è troppo lungo"
   },
   "clearModal": {
@@ -32,7 +32,7 @@
   },
   "introduce": {
     "welcome": "Benvenuto",
-    "desc": "Un semplice e completamente offline To-Do app",
+    "desc": "Una app semplice e completamente offline",
     "selectLang": "Seleziona la tua lingua preferita",
     "btn": "TADA ANDIAMO AL TO-DO"
   },
@@ -41,7 +41,7 @@
     "2": "Accarezzare qualcosa di carino",
     "3": "Lucidare un boomerang",
     "4": "Infornare dei biscotti",
-    "5": "Prendere del legno e creare un banco da lavoro",
+    "5": "Costruire una navicella spaziale",
     "6": "Colpire gentilmente la testa di un elefante",
     "7": "Abbracciare un orso grizzly",
     "8": "Nuotare con i delfini"
