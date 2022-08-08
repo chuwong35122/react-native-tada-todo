@@ -9,7 +9,6 @@ const languageDetectorPlugin = {
   detect: async function (callback: (lang: string) => void) {
     //get stored language from Async storage
     const language = await getAppLanguage();
-    console.log({ language });
     if (language) {
       //if language was stored before, use this language in the app
       return callback(language);

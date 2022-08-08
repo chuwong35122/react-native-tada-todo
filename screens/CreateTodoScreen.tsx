@@ -27,7 +27,6 @@ const CreateTodoScreen = () => {
   useEffect(() => {
     const rndIndex = Math.floor(Math.random() * todoPlaceholder.length);
     const placeholder = t(todoPlaceholder[rndIndex]);
-    console.log(placeholder);
     setTitlePlaceholder(placeholder);
   }, []);
 
