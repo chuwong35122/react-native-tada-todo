@@ -11,6 +11,7 @@ import { todoPlaceholder } from "../constants/placeholder";
 import { TodoContext } from "../contexts/TodoContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
+import { AdMobBanner } from "expo-ads-admob";
 
 const CreateTodoScreen = () => {
   const navigation =
@@ -72,13 +73,8 @@ const CreateTodoScreen = () => {
     <SafeAreaView
       style={{ backgroundColor: "#fff", paddingTop: 20, paddingHorizontal: 4 }}
     >
-      <VStack
-        space={4}
-        mx="2"
-        justifyContent="space-between"
-        style={{ height: 440 }}
-      >
-        <View>
+      <VStack space={4} justifyContent="space-between" style={{ height: 440 }}>
+        <View mx="2">
           <View>
             <Text fontSize="3xl" fontFamily="Roboto_500Medium" lineHeight="xs">
               {t("create.header")}
@@ -130,7 +126,15 @@ const CreateTodoScreen = () => {
             </HStack>
           </View>
         </View>
-        <View>
+        {/* Ads */}
+        <View w="full" alignItems="center" justifyContent="center">
+          <AdMobBanner
+            bannerSize="smartBannerPortrait"
+            adUnitID="ca-app-pub-2514800444244529/8546135789"
+            servePersonalizedAds
+          />
+        </View>
+        <View mx="2">
           <Button
             size="lg"
             bgColor="black"
