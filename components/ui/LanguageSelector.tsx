@@ -1,6 +1,6 @@
 import { Select } from "native-base";
 import React, { useEffect, useState } from "react";
-import { AntDesign } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { availableLanguages } from "../../i18n/i18n";
 import { LanguageTypes } from "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
@@ -29,7 +29,7 @@ const LanguageSelector = () => {
       fontSize="lg"
       _selectedItem={{
         bg: "violet.100",
-        endIcon: <AntDesign name="check" size={24} color="#6d28d9" />,
+        endIcon: <MaterialIcons name="check" size={20} color="#7c3aed" />,
       }}
       mt={1}
       onValueChange={(val) => setLanguage(val as LanguageTypes)}
