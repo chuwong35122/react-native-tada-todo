@@ -2,7 +2,9 @@
 
 Tada To-do is an open source React-Native project that allows user to create a To-Do list privately on their mobile device.
 
-All bugs report can be reported in this repository or chuchuwiiii.dev@gmail.com
+🪲 All bugs report can be reported in this repository or chuchuwiiii.dev@gmail.com
+
+😄 Please feel free to translate or point out mistranslation of the application!
 
 ## Privacy Policy
 
