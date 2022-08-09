@@ -10,7 +10,7 @@ const LanguageSelector = () => {
   const { i18n } = useTranslation();
 
   const [language, setLanguage] = useState<LanguageTypes>(
-    i18n.language as LanguageTypes
+    (i18n.language as LanguageTypes) || "en"
   );
   useEffect(() => {
     async function fn() {
