@@ -3,7 +3,7 @@
     "name": "Tada To-Do",
     "owner": "chuchuwiiii",
     "slug": "tada-to-do",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -28,7 +28,8 @@
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-2514800444244529~3641008054"
       },
-      "blockedPermissions": ["android.permission.RECORD_AUDIO"]
+      "blockedPermissions": ["android.permission.RECORD_AUDIO"],
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
