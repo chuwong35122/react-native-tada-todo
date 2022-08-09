@@ -11,7 +11,6 @@ import { todoPlaceholder } from "../constants/placeholder";
 import { TodoContext } from "../contexts/TodoContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
-import { AdMobBanner } from "expo-ads-admob";
 
 const CreateTodoScreen = () => {
   const navigation =
@@ -125,14 +124,6 @@ const CreateTodoScreen = () => {
               </Text>
             </HStack>
           </View>
-        </View>
-        {/* Ads */}
-        <View w="full" alignItems="center" justifyContent="center">
-          <AdMobBanner
-            bannerSize="smartBannerPortrait"
-            adUnitID="ca-app-pub-2514800444244529/8546135789"
-            servePersonalizedAds
-          />
         </View>
         <View mx="2">
           <Button

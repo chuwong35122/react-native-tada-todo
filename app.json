@@ -25,9 +25,6 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.chuchuwiiii.tadatodo",
-      "config": {
-        "googleMobileAdsAppId": "ca-app-pub-2514800444244529~3641008054"
-      },
       "blockedPermissions": ["android.permission.RECORD_AUDIO"],
       "versionCode": 3
     },
