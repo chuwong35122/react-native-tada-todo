@@ -18,11 +18,13 @@ import LanguageSelector from "../components/ui/LanguageSelector";
 import { clearStorage } from "../utils/settings";
 import { useTranslation } from "react-i18next";
 import ToastMessage from "./../components/ui/ToastMessage";
+import { useWindowDimensions } from "react-native";
 
 const SettingScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackNavigationScreenTypes>>();
   const { t } = useTranslation();
+  const { height } = useWindowDimensions();
 
   const { updateTodoList } = useContext(TodoContext);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -103,7 +105,7 @@ const SettingScreen = () => {
             loop
             style={{
               width: "100%",
-              height: 360,
+              height: height * 0.5,
             }}
             source={require("../assets/lottie/cat.json")}
           />
