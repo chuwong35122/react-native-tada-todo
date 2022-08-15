@@ -3,7 +3,7 @@
     "name": "Tada To-Do",
     "owner": "chuchuwiiii",
     "slug": "tada-to-do",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -25,7 +25,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "blockedPermissions": ["android.permission.RECORD_AUDIO"],
-      "versionCode": 1,
+      "versionCode": 2,
       "package": "com.chuchuwiiii.tadatodomobile"
     },
     "web": {
